@@ -1,4 +1,5 @@
 import 'package:day_offf_app/routes/app_pages.dart';
+import 'package:day_offf_app/screen/main/main_screen.dart';
 import '../model/login_model.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -11,9 +12,8 @@ class APIService {
     print(response.statusCode);
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print(response.data);
       Get.snackbar("Thanh cong", "message");
-      Get.offNamed(Routes.main);
+      Get.offAll(const MainScreen());
       return LoginResponseModel.fromJson(
         response.data,
       );

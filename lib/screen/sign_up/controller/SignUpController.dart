@@ -19,9 +19,9 @@ class SignUpController extends GetxController {
 
   Future<void> signUp() async {
     if (passwordController.text != confirmPasswordController.text) {
-      Get.snackbar('Pass word','Passwords do not match');
+      Get.snackbar('Pass word', 'Passwords do not match');
     }
-    final signUpModel =  SignUpModel(
+    final signUpModel = SignUpModel(
       fullName: fullnameController.text,
       nickName: nicknameController.text,
       email: emailController.text,
@@ -32,7 +32,7 @@ class SignUpController extends GetxController {
       username: usernameController.text,
       password: passwordController.text,
     );
-    SignUpService service =   SignUpService();
+    SignUpService service = SignUpService();
     await service.signUp(signUpModel);
     Get.snackbar('Sign Up', "Success");
     Get.toNamed(Routes.login);

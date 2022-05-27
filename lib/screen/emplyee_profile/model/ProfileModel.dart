@@ -1,4 +1,3 @@
-
 class ProfileModelRequest {
   String? fullName;
   String? nickName;
@@ -10,12 +9,12 @@ class ProfileModelRequest {
 
   ProfileModelRequest(
       {this.fullName,
-        this.nickName,
-        this.email,
-        this.roles,
-        this.citizenID,
-        this.level,
-        this.dateOfBirth});
+      this.nickName,
+      this.email,
+      this.roles,
+      this.citizenID,
+      this.level,
+      this.dateOfBirth});
 
   ProfileModelRequest.fromJson(Map<String, dynamic> json) {
     fullName = json['fullName'];
@@ -28,15 +27,14 @@ class ProfileModelRequest {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['fullName'] = this.fullName;
-    data['nickName'] = this.nickName;
-    data['email'] = this.email;
-    data['roles'] = this.roles;
-    data['citizenID'] = this.citizenID;
-    data['level'] = this.level;
-    data['dateOfBirth'] = this.dateOfBirth;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['fullName'] = fullName;
+    data['nickName'] = nickName;
+    data['email'] = email;
+    data['roles'] = roles;
+    data['citizenID'] = citizenID;
+    data['level'] = level;
+    data['dateOfBirth'] = dateOfBirth;
     return data;
   }
 }
-

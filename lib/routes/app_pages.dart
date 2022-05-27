@@ -27,7 +27,7 @@ class AppPages {
     ),
     GetPage<dynamic>(
       name: Routes.login,
-      page: () =>  LoginScreen(),
+      page: () => LoginScreen(),
     ),
     GetPage<dynamic>(
       name: Routes.forgot_password,

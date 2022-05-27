@@ -3,21 +3,20 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 LoginController controller = Get.put(LoginController());
+
 class DeleteRequest {
   var dio = Dio();
 
-  Future<void> deleteRequest( String id ) async {
+  Future<void> deleteRequest(String id) async {
     print(controller.user_token);
     try {
       dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
-      final response = await dio.delete('http://66.42.56.32:3000/request/remove-request/$id');
-      print(response.data);
+      final response = await dio
+          .delete('http://66.42.56.32:3000/request/remove-request/$id');
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print('successes');
         Get.snackbar("Success", 'message');
       }
-    } catch (Exception) {
-      print(Exception);
-    }
+      // ignore: empty_catches
+    } on Exception {}
   }
 }

@@ -26,19 +26,19 @@ class _CustomDialogState extends State<CustomDialog> {
       title: Text('AlertDialog Title'),
       content: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
+          children: const <Widget>[
             Text('This is a demo alert dialog.'),
           ],
         ),
       ),
       actions: <Widget>[
-        TextButton(child: Text('Confirm'), onPressed: () {}
+        TextButton(child: const Text('Confirm'), onPressed: () {}
             //   // print('Confirmed');
             //   // Navigator.of(context).pop();
             //
             ),
         TextButton(
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
           onPressed: () {
             Navigator.of(context).pop();
           },

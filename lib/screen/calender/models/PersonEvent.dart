@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class PersonEvent {
   String? name;
   String? avatar;

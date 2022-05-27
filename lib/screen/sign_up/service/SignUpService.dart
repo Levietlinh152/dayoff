@@ -1,4 +1,3 @@
-
 import 'package:day_offf_app/screen/sign_up/model/SignUpModel.dart';
 import 'package:dio/dio.dart';
 
@@ -9,15 +8,9 @@ class SignUpService {
     String url = "http://66.42.56.32:3000/users/sign-up";
     try {
       final response = await dio.post(url, data: signUpModel.toJson());
-      print(response.statusCode);
-      print(response.data);
-        if (response.statusCode == 200 || response.statusCode == 201) {
-        print('successes');
-      }
+      if (response.statusCode == 200 || response.statusCode == 201) {}
     }
-    catch(Exception) {
-      print(Exception);
-
-    }
+    // ignore: empty_catches
+    catch (Exception) {}
   }
 }

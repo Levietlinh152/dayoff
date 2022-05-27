@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "LOGIN",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -63,12 +63,12 @@ class LoginScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ForgotPasswordScreen();
+                              return const ForgotPasswordScreen();
                             },
                           ),
                         );
                       },
-                      child: Text('Forgot Password?')),
+                      child: const Text('Forgot Password?')),
                   SizedBox(height: size.height * 0.03),
                 ],
               ),
@@ -79,9 +79,8 @@ class LoginScreen extends StatelessWidget {
             left: 10,
             child: IconButton(
                 onPressed: () {
-                  Get.back();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   size: 30,
                 )),

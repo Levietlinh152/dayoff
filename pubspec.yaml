@@ -51,6 +51,8 @@ dependencies:
   intl: ^0.17.0
   json_serializable: ^6.2.0
   roundcheckbox: ^2.0.4+1
+  flutter_toggle_tab: ^1.1.7
+
 
 
   # The following adds the Cupertino Icons font to your application.

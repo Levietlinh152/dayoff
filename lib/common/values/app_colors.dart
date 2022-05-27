@@ -28,6 +28,4 @@ class AppColors {
   static const focusedText = Color(0xff4A52BF);
   static const placeholderText = Color(0xff455465);
   static const kPrimaryLightColor = Color(0xFFF1E6FF);
-
-
 }

@@ -60,8 +60,8 @@ class ProfileScreen extends StatelessWidget {
                       color: Colors.lightBlue[900],
                       size: 35.0,
                     ),
-                    padding: EdgeInsets.all(15.0),
-                    shape: CircleBorder(),
+                    padding: const EdgeInsets.all(15.0),
+                    shape: const CircleBorder(),
                   )
                 ],
               ),
@@ -85,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                       size: 35.0,
                       color: Colors.lightBlue[900],
                     ),
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     shape: const CircleBorder(),
                   )
                 ],
@@ -97,26 +97,21 @@ class ProfileScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          Container(
-            child: RoundedButton(
-              text: "All user",
-              textSize: 20,
-              press: () {
-                Get.to(AllScreen());
-                AllService().fetchPost();
-              },
-            ),
+          RoundedButton(
+            text: "All user",
+            textSize: 20,
+            press: () {
+              Get.to(AllScreen());
+              AllService().fetchPost();
+            },
           ),
-          Container(
-            child: RoundedButton(
-              text: "All request",
-              textSize: 20,
-              press: () {
-                Get.to(AllRequest());
-                // Get.to(AllRequestScreen());
-
-              },
-            ),
+          RoundedButton(
+            text: "All request",
+            textSize: 20,
+            press: () {
+              Get.to(AllRequest());
+              // Get.to(AllRequestScreen());
+            },
           )
         ]),
       ),

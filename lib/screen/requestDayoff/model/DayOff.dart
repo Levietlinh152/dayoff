@@ -12,7 +12,7 @@ class DayOff {
   late final DateTime toDay;
   late final String reason;
 
-  DayOff.fromJson(Map<String, dynamic> json){
+  DayOff.fromJson(Map<String, dynamic> json) {
     isMorning = json['isMorning'];
     isMultipleDay = json['isMultipleDay'];
     fromDay = json['fromDay'];

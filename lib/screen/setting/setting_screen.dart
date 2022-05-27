@@ -12,7 +12,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Setting',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
         ),
@@ -26,7 +26,7 @@ class SettingScreen extends StatelessWidget {
                 lable: "Employee Profile"),
             TextFuntion(
                 ontap: () {
-                  Get.to(ChangePasswordScreen());
+                  Get.to(const ChangePasswordScreen());
                 },
                 lable: "Change Password"),
             TextFuntion(ontap: () {}, lable: "Share the app"),

@@ -9,30 +9,27 @@ class ChangePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      ),
-      body:
-      Container(
-        height: Get.height/2,
+      appBar: AppBar(),
+      body: Container(
+        height: Get.height / 2,
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             RoundedPasswordField(
               hintText: "Enter Password",
-            onChanged: (value) {},
-          ),
-
+              onChanged: (value) {},
+            ),
             RoundedPasswordField(
               hintText: "New Password",
               onChanged: (value) {},
-          ),
-          RoundedPasswordField(
-            hintText: "Conform Password",
-            onChanged: (value) {},
-          ),
-          RoundedButton(text: "Change Password", press: (){})
-        ],
+            ),
+            RoundedPasswordField(
+              hintText: "Conform Password",
+              onChanged: (value) {},
+            ),
+            RoundedButton(text: "Change Password", press: () {})
+          ],
         ),
       ),
     );

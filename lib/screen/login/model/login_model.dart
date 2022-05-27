@@ -6,8 +6,8 @@ class LoginResponseModel {
 
   factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
     return LoginResponseModel(
-      token: json["access_token"] != null ? json["access_token"] : "",
-      user_id: json["user_id"] != null ? json["user_id"]:"",
+      token: json["access_token"] ?? "",
+      user_id: json["user_id"] ?? "",
     );
   }
 }
@@ -25,8 +25,8 @@ class LoginRequestModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['username'] = this.username;
-    data['password'] = this.password;
+    data['username'] = username;
+    data['password'] = password;
     return data;
   }
 }

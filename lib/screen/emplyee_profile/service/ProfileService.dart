@@ -15,8 +15,6 @@ class ProfileService {
           'http://66.42.56.32:3000/users/update-user/${c.user_id}',
           data: employeeModelRequest.toJson());
       profileController.responseData = response.data;
-      print(profileController.responseData);
-      print(response.statusMessage);
       profileController.responseCode = response.statusCode;
       return response.data;
     } on DioError catch (e) {

@@ -1,17 +1,23 @@
 import 'package:day_offf_app/common/values/app_colors.dart';
 import 'package:flutter/material.dart';
-class ShadowTextBox extends StatelessWidget {
-late final Function tap;
-late final String title;
-late final String subtitle;
-late final double w;
-late final double h;
 
-ShadowTextBox({ required this.tap, required this.title, this.subtitle='', required this.w, required this.h });
+class ShadowTextBox extends StatelessWidget {
+  late final Function tap;
+  late final String title;
+  late final String subtitle;
+  late final double w;
+  late final double h;
+
+  ShadowTextBox(
+      {required this.tap,
+      required this.title,
+      this.subtitle = '',
+      required this.w,
+      required this.h});
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
+    return InkWell(
         onTap: () {
           tap();
         },
@@ -32,32 +38,29 @@ ShadowTextBox({ required this.tap, required this.title, this.subtitle='', requir
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children:  [
-                  Icon(
+                children: [
+                  const Icon(
                     Icons.calendar_month,
                     color: Colors.redAccent,
                   ),
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: AppColors.black
-                    ),
+                        color: AppColors.black),
                   )
                 ],
               ),
-               Text(
+              Text(
                 subtitle,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                     fontSize: 20),
               )
             ],
           ),
-        )
-    );
-
+        ));
   }
 }

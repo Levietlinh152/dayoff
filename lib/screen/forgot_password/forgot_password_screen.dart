@@ -21,7 +21,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     "Forgot Password?",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 onPressed: () {
                   Get.back();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   size: 30,
                 )),

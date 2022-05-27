@@ -6,29 +6,25 @@ import 'package:get/get.dart';
 
 LoginController controller = Get.put(LoginController());
 AllRequestController requestController = AllRequestController();
+
 class AllRequestDayOffService {
   List<AllRequestModel> listAllRequest = <AllRequestModel>[];
   List<AllRequestModel> listPendingRequest = <AllRequestModel>[];
   List<AllRequestModel> listApprovedRequest = <AllRequestModel>[];
-
 
   var dio = Dio();
   var options = BaseOptions(
     contentType: 'application/json',
   );
   Future<List<AllRequestModel>> fetchRequest() async {
-    print(controller.user_token);
     String url = "http://66.42.56.32:3000/request/get-all-request";
     dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
-    print(controller.user_token);
     final response = await dio.get(url,
         options: Options(
           contentType: "application/json",
         ));
 
     if (response.statusCode == 200) {
-      print(response.data);
-
       listAllRequest = RxList<AllRequestModel>.from(
           response.data.map((e) => AllRequestModel.fromJson(e)));
       return listAllRequest;
@@ -39,18 +35,14 @@ class AllRequestDayOffService {
   }
 
   Future<List<AllRequestModel>> fetchPendingRequest() async {
-    print(controller.user_token);
     String url = "http://66.42.56.32:3000/request/get-all-pending-request";
     dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
-    print(controller.user_token);
     final response = await dio.get(url,
         options: Options(
           contentType: "application/json",
         ));
 
     if (response.statusCode == 200) {
-      print(response.data);
-
       listPendingRequest = RxList<AllRequestModel>.from(
           response.data.map((e) => AllRequestModel.fromJson(e)));
       return listPendingRequest;
@@ -59,19 +51,16 @@ class AllRequestDayOffService {
       throw Exception('Failed to load post');
     }
   }
+
   Future<List<AllRequestModel>> fetchApproveRequest() async {
-    print(controller.user_token);
     String url = "http://66.42.56.32:3000/request/get-all-approved-request";
     dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
-    print(controller.user_token);
     final response = await dio.get(url,
         options: Options(
           contentType: "application/json",
         ));
 
     if (response.statusCode == 200) {
-      print(response.data);
-
       listApprovedRequest = RxList<AllRequestModel>.from(
           response.data.map((e) => AllRequestModel.fromJson(e)));
       return listApprovedRequest;
@@ -80,5 +69,4 @@ class AllRequestDayOffService {
       throw Exception('Failed to load post');
     }
   }
-
 }

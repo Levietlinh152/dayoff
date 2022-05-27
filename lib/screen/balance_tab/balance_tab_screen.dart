@@ -6,9 +6,10 @@ import 'package:day_offf_app/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class BalanceTabScreen extends StatelessWidget {
- BalanceTabController controller = Get.put(BalanceTabController());
- AllRequestController allRequestController = Get.put(AllRequestController());
+  BalanceTabController controller = Get.put(BalanceTabController());
+  AllRequestController allRequestController = Get.put(AllRequestController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class BalanceTabScreen extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey[300],
         ),
-        child:ListView(
+        child: ListView(
           children: [
             Column(
               children: [
@@ -29,24 +30,22 @@ class BalanceTabScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10), //
                         color: Colors.white),
                     height: Get.height / 14,
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Text('This year',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
-                                fontSize: 20,
-                              )),
-                          Container(
-                            alignment: Alignment.centerRight,
-                            child: const Icon(Icons.calendar_month),
-                          )
-                        ],
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text('This year',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                              fontSize: 20,
+                            )),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: const Icon(Icons.calendar_month),
+                        )
+                      ],
                     )),
                 Stack(
                   children: <Widget>[
@@ -107,7 +106,9 @@ class BalanceTabScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: const BoxDecoration(color: Colors.white),
               child: Column(
-                  children: List.generate(allRequestController.listPendingRequest.value.length, (index) {
+                  children: List.generate(
+                      allRequestController.listPendingRequest.value.length,
+                      (index) {
                 return Container(
                     decoration: const BoxDecoration(
                         border: Border(
@@ -134,7 +135,10 @@ class BalanceTabScreen extends StatelessWidget {
                                   size: 13,
                                 ),
                                 Text(
-                                  allRequestController.listPendingRequest[index].fromDay.toString().substring(0,10),
+                                  allRequestController
+                                      .listPendingRequest[index].fromDay
+                                      .toString()
+                                      .substring(0, 10),
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -148,7 +152,10 @@ class BalanceTabScreen extends StatelessWidget {
                                   size: 13,
                                 ),
                                 Text(
-                                  allRequestController.listPendingRequest[index].toDay.toString().substring(0,10),
+                                  allRequestController
+                                      .listPendingRequest[index].toDay
+                                      .toString()
+                                      .substring(0, 10),
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
@@ -169,7 +176,7 @@ class BalanceTabScreen extends StatelessWidget {
                           ],
                         ),
                         InkWell(
-                          onTap: (){},
+                          onTap: () {},
                           child: const Icon(Icons.delete_outline,
                               size: 30, color: AppColors.amaranth),
                         )
@@ -187,7 +194,10 @@ class BalanceTabScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: const BoxDecoration(color: Colors.white),
               child: Column(
-                  children: List.generate(allRequestController.listApprovedRequest.value.length, (index) {
+                  children: List.generate(
+                      // ignore: invalid_use_of_protected_member
+                      allRequestController.listApprovedRequest.value.length,
+                      (index) {
                 return Container(
                     decoration: const BoxDecoration(
                         border: Border(
@@ -200,7 +210,7 @@ class BalanceTabScreen extends StatelessWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CustomText(
+                            const CustomText(
                               text: '1 Day off',
                               size: 20,
                               color: AppColors.clBlack,
@@ -208,13 +218,15 @@ class BalanceTabScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.calendar_month,
                                   size: 13,
                                 ),
                                 CustomText(
-                                  text:
-                                  allRequestController.listApprovedRequest[index].fromDay.toString().substring(0,10),
+                                  text: allRequestController
+                                      .listApprovedRequest[index].fromDay
+                                      .toString()
+                                      .substring(0, 10),
                                   size: 13,
                                   color: AppColors.clBlack,
                                   weight: FontWeight.bold,
@@ -223,13 +235,16 @@ class BalanceTabScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.calendar_month,
                                   size: 13,
                                 ),
                                 Text(
-                                  allRequestController.listApprovedRequest[index].toDay.toString().substring(0,10),
-                                  style: TextStyle(
+                                  allRequestController
+                                      .listApprovedRequest[index].toDay
+                                      .toString()
+                                      .substring(0, 10),
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13),
                                 ),
@@ -252,7 +267,8 @@ class BalanceTabScreen extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: CustomText(
-                                text: '   ${allRequestController.listApprovedRequest[index].state}   ',
+                                text:
+                                    '   ${allRequestController.listApprovedRequest[index].state}   ',
                                 size: 16,
                                 color: AppColors.white,
                                 weight: FontWeight.bold,

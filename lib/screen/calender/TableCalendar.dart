@@ -89,7 +89,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     CalendarController controller = Get.put(CalendarController());
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Events'),
+        title: const Text('TableCalendar - Events'),
       ),
       body: Column(
         children: [
@@ -104,14 +104,13 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             rangeSelectionMode: _rangeSelectionMode,
             eventLoader: _getEventsForDay,
             startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarStyle: CalendarStyle(
+            calendarStyle: const CalendarStyle(
               // Use `CalendarStyle` to customize the UI
               outsideDaysVisible: false,
             ),
-            onDaySelected: (selectedDay, focusedDay) async{
+            onDaySelected: (selectedDay, focusedDay) async {
               // _selectedDay;
-              print(selectedDay.toString());
-                focusedDay=await selectedDay;
+              focusedDay = await selectedDay;
               controller.filter(selectedDay);
             },
             onRangeSelected: _onRangeSelected,
@@ -128,7 +127,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
           ),
           const SizedBox(height: 8.0),
           Obx(() => Expanded(
-            child: ListView.builder(
+                child: ListView.builder(
                   itemCount: controller.listRequestDay.length,
                   itemBuilder: (context, index) {
                     return Container(
@@ -219,7 +218,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                     );
                   },
                 ),
-          ))
+              ))
           // Expanded(
           //   child: ValueListenableBuilder<List<Event>>(
           //     valueListenable: _selectedEvents,

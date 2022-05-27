@@ -48,7 +48,7 @@ class AppThemes {
   static const Color _darkBackgroundColor = ebonyClay;
   static const Color _darkBackgroundAppBarColor = _darkPrimaryColor;
   static const Color _darkBackgroundSecondaryColor =
-  Color.fromRGBO(0, 0, 0, .6);
+      Color.fromRGBO(0, 0, 0, .6);
   static const Color _darkBackgroundAlertColor = blackPearl;
   static const Color _darkBackgroundActionTextColor = white;
 
@@ -108,7 +108,7 @@ class AppThemes {
       color: _lightIconColor,
     ),
     popupMenuTheme:
-    const PopupMenuThemeData(color: _lightBackgroundAppBarColor),
+        const PopupMenuThemeData(color: _lightBackgroundAppBarColor),
     textTheme: _lightTextTheme,
     buttonTheme: ButtonThemeData(
         shape: RoundedRectangleBorder(
@@ -121,8 +121,8 @@ class AppThemes {
       //prefixStyle: TextStyle(color: _lightIconColor),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(8.0),
-          )),
+        Radius.circular(8.0),
+      )),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: _lightBorderColor),
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -211,8 +211,8 @@ class AppThemes {
       //labelStyle: TextStyle(color: nevada),
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(8.0),
-          )),
+        Radius.circular(8.0),
+      )),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: _darkBorderColor),
         borderRadius: BorderRadius.all(Radius.circular(8.0)),

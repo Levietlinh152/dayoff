@@ -13,7 +13,6 @@ import '../../widget/rounded_password_field.dart';
 import '../forgot_password/widget/background.dart';
 
 class SignUpScreen extends StatefulWidget {
-
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
@@ -24,7 +23,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: Stack(
@@ -49,7 +47,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   icon: Icons.home_repair_service,
                   hintText: "Full Name",
                   onChanged: (value) {},
-
                 ),
 
                 RoundedInputField(
@@ -75,7 +72,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   width: size.width * 0.8,
                   decoration: BoxDecoration(
                     color: AppColors.kPrimaryLightColor,
@@ -83,10 +81,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.leak_add,color: AppColors.kPrimaryColor,),
+                      const Icon(
+                        Icons.leak_add,
+                        color: AppColors.kPrimaryColor,
+                      ),
                       DropdownButton<String>(
                         value: signUpController.levelValue,
-                        icon: const Icon(Icons.arrow_downward,color: AppColors.kPrimaryColor,),
+                        icon: const Icon(
+                          Icons.arrow_downward,
+                          color: AppColors.kPrimaryColor,
+                        ),
                         elevation: 16,
                         style: const TextStyle(color: Colors.deepPurple),
                         underline: Container(
@@ -97,8 +101,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             signUpController.levelValue = newValue!;
                           });
                         },
-                        items: <String>['INTERN', 'FRESHER', 'JUNIOR', 'MIDDLE','SENIOR','PINCIPAL']
-                            .map<DropdownMenuItem<String>>((String value) {
+                        items: <String>[
+                          'INTERN',
+                          'FRESHER',
+                          'JUNIOR',
+                          'MIDDLE',
+                          'SENIOR',
+                          'PINCIPAL'
+                        ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
@@ -120,7 +130,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       print('change $date');
                     }, onConfirm: (date) {
                       print('confirm $date');
-                      signUpController.dateController.text = date.toString().substring(0,10);
+                      signUpController.dateController.text =
+                          date.toString().substring(0, 10);
                     }, currentTime: DateTime.now(), locale: LocaleType.vi);
                   },
                   hintText: "date of birth",
@@ -143,17 +154,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
 
                 RoundedPasswordField(
-                  passwordController: signUpController.confirmPasswordController,
+                  passwordController:
+                      signUpController.confirmPasswordController,
                   hintText: 'confirmPassword'.tr,
                   onChanged: (value) {},
                 ),
 
-
-
                 RoundedButton(
                   text: "Send",
                   press: () async {
-                   signUpController.signUp();
+                    signUpController.signUp();
                   },
                 ),
 

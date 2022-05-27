@@ -26,7 +26,7 @@ class SendLeaveRequest extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: Get.width,
               height: Get.height * 0.35,
               child: const Image(

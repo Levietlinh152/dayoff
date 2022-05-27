@@ -16,9 +16,7 @@ class CountryPicker extends StatelessWidget {
               //Optional. Shows phone code before the country name.
               showPhoneCode: true,
               showWorldWide: false,
-              onSelect: (Country country) {
-                print('Select country: ${country.displayName}');
-              },
+              onSelect: (Country country) {},
               // Optional. Sets the theme for the country list picker.
               countryListTheme: CountryListThemeData(
                 // Optional. Sets the border radius for the bottomsheet.

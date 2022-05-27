@@ -1,6 +1,6 @@
 
-
 import 'package:day_offf_app/screen/all_user/DetailUser.dart';
+import 'package:day_offf_app/screen/all_user/controller/AllUserController.dart';
 import 'package:day_offf_app/screen/all_user/service/AllService.dart';
 import 'package:day_offf_app/widget/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,8 @@ class AllScreen extends StatefulWidget {
   State<AllScreen> createState() => _AllScreenState();
 }
 class _AllScreenState extends State<AllScreen> {
-  late Future<List> futureStudent=AllService().fetchPost();
+  // late Future<List> futureStudent=AllService().fetchPost();
+  AllUserController controller =Get.put(AllUserController());
   bool _isShown = true;
   void _delete(BuildContext context,Function onConfirm,Function onCancel) {
     showDialog(
@@ -46,52 +47,44 @@ class _AllScreenState extends State<AllScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('List User'),
-        ),
-        body: Center(
-          child: FutureBuilder(
-            future: futureStudent,
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index){
-                      return Card(
-                        margin: const EdgeInsets.all(10),
-                        child: ListTile(
-                          leading: const Icon(Icons.account_circle,size: 40,),
-                          title: CustomText( text: '${snapshot.data[index].fullName}',),
-                          subtitle: CustomText(
-                            text: '${snapshot.data[index].username}',
-                            color: Colors.grey,
-                          ),
-                          trailing: InkWell(
+      appBar: AppBar(
+        title: const Text('List User'),
+      ),
+      body: Center(
+
+              child:Obx(()=> ListView.builder(
+                  itemCount: controller.futureStudent.length,
+                  itemBuilder: (BuildContext context, int index){
+                    return Card(
+                      margin: const EdgeInsets.all(10),
+                      child: ListTile(
+                        leading: const Icon(Icons.account_circle,size: 40,),
+                        title: CustomText( text: '${controller.futureStudent[index].fullName}',),
+                        subtitle: CustomText(
+                          text: '${controller.futureStudent[index].username}',
+                          color: Colors.grey,
+                        ),
+                        trailing: InkWell(
                             onTap:
                             _isShown==true ? ()=>_delete(context,
-                                    (){
-                                  AllService().deleteUser(snapshot.data[index].sId);
-                                  futureStudent= AllService().fetchPost();
+                                    () async {
+                                  AllService().deleteUser(controller.futureStudent[index].sId!);
+                                  controller.futureStudent.value= await AllService().fetchPost();
                                 },
                                     (){}):null
-                              ,
-                              child: const Icon(Icons.delete)),
-                          onTap:(){
-                            Get.to(DetailUser(user: snapshot.data[index],));
-                          },
+                            ,
+                            child: const Icon(Icons.delete)),
+                        onTap:(){
+                          Get.to(DetailUser(user: controller.futureStudent[index],));
+                        },
 
-                        ),
-                      );
-                    }
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return const CircularProgressIndicator();
-            },
-          ),
-        ),
-      );
+                      ),
+                    );
+                  }
+              )
+    )
+    ));
+
+
   }
 }
-

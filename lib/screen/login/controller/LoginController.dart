@@ -16,13 +16,11 @@ class LoginController extends GetxController {
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
       Get.snackbar('Enter your Username or Password', '');
     }
-    final loginRequestModel = new LoginRequestModel(
+    final loginRequestModel =  LoginRequestModel(
         username: usernameController.text, password: passwordController.text);
-    APIService apiService = new APIService();
+    APIService apiService =  APIService();
     var res = await apiService.login(loginRequestModel);
     user_token = res.token;
-    print(user_token.toString());
     user_id = res.user_id;
-    print(user_id);
   }
 }

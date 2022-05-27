@@ -12,15 +12,15 @@ class AllRequestModel {
 
   AllRequestModel(
       {this.sId,
-        this.user,
-        this.state,
-        this.toDay,
-        this.reason,
-        this.fromDay,
-        this.createdDate,
-        this.isMultipleDay,
-        this.isMorning,
-        this.iV});
+      this.user,
+      this.state,
+      this.toDay,
+      this.reason,
+      this.fromDay,
+      this.createdDate,
+      this.isMultipleDay,
+      this.isMorning,
+      this.iV});
 
   AllRequestModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -36,19 +36,19 @@ class AllRequestModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['_id'] = sId;
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
-    data['state'] = this.state;
-    data['toDay'] = this.toDay;
-    data['reason'] = this.reason;
-    data['fromDay'] = this.fromDay;
-    data['createdDate'] = this.createdDate;
-    data['isMultipleDay'] = this.isMultipleDay;
-    data['isMorning'] = this.isMorning;
-    data['__v'] = this.iV;
+    data['state'] = state;
+    data['toDay'] = toDay;
+    data['reason'] = reason;
+    data['fromDay'] = fromDay;
+    data['createdDate'] = createdDate;
+    data['isMultipleDay'] = isMultipleDay;
+    data['isMorning'] = isMorning;
+    data['__v'] = iV;
     return data;
   }
 }
@@ -65,9 +65,9 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['nickName'] = this.nickName;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['_id'] = sId;
+    data['nickName'] = nickName;
     return data;
   }
 }

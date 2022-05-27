@@ -7,7 +7,7 @@ import 'localization/localization_serviece.dart';
 import 'screen/splash/splash.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class RequestController extends GetxController{
+class RequestController extends GetxController {
   TextEditingController reasonController = TextEditingController();
   TextEditingController startDateController = TextEditingController();
   TextEditingController endDateController = TextEditingController();
@@ -14,16 +14,17 @@ class RequestController extends GetxController{
   bool isMorning = false;
   bool isMultipleDay = false;
 
-Future<void> requestDayoff() async {
-  final dayoff = new DayOff(
+  Future<void> requestDayoff() async {
+    final dayoff = DayOff(
       isMorning: isMorning,
-      isMultipleDay: isMultipleDay ,
-      fromDay:  DateFormat('yyyy-MM-dd').parse(selectedStartDate.value.toIso8601String()),
-      toDay:  DateFormat('yyyy-MM-dd').parse(selectedEndDate.value.toIso8601String()),
-      reason:  reasonController.text,
-  );
-  print("model:${dayoff.toDay}");
-  RequestDayOffService requestDayOffService = new RequestDayOffService();
-  await requestDayOffService.requestDayOff(dayoff);
-}
+      isMultipleDay: isMultipleDay,
+      fromDay: DateFormat('yyyy-MM-dd')
+          .parse(selectedStartDate.value.toIso8601String()),
+      toDay: DateFormat('yyyy-MM-dd')
+          .parse(selectedEndDate.value.toIso8601String()),
+      reason: reasonController.text,
+    );
+    RequestDayOffService requestDayOffService = RequestDayOffService();
+    await requestDayOffService.requestDayOff(dayoff);
+  }
 }

@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 import 'package:day_offf_app/constants/app_url.dart';
 import 'package:day_offf_app/screen/all_request/controller/AllRequestController.dart';
@@ -6,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 AllRequestController allRequestController = Get.put(AllRequestController());
+
 class Event {
   String? name;
   String? avatar;
@@ -13,9 +13,9 @@ class Event {
   String? endTime;
   String? status;
 
-  Event(  this.name, this.avatar, this.startTime, this.endTime,
-      this.status);
+  Event(this.name, this.avatar, this.startTime, this.endTime, this.status);
 }
+
 /// Using a [LinkedHashMap] is highly recommended if you decide to use a map.
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
@@ -25,11 +25,9 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
 final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
     key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 3),
     value: (item) => List.generate(
-        item % 4 + 3, (index) => Event('Name${index}','','','','')))
+        item % 4 + 3, (index) => Event('Name${index}', '', '', '', '')))
   ..addAll({
-    kToday: [
-
-    ],
+    kToday: [],
   });
 
 int getHashCode(DateTime key) {
@@ -41,7 +39,7 @@ List<DateTime> daysInRange(DateTime first, DateTime last) {
   final dayCount = last.difference(first).inDays + 1;
   return List.generate(
     dayCount,
-        (index) => DateTime.utc(first.year, first.month, first.day + index),
+    (index) => DateTime.utc(first.year, first.month, first.day + index),
   );
 }
 

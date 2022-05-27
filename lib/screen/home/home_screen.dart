@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               "WELCOME TO DAY OFF APP".tr.toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: AppColors.kPrimaryColor),

@@ -20,7 +20,6 @@ class RoundedInputField extends StatelessWidget {
     this.icon = Icons.person,
     required this.onChanged,
     this.textfielController,
-
   }) : super(key: key);
 
   @override
@@ -49,5 +48,3 @@ class RoundedInputField extends StatelessWidget {
     );
   }
 }
-
-
