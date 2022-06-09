@@ -42,7 +42,7 @@ class AllUser {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     data['level'] = level;
     data['timeOffRemaining'] = timeOffRemaining;
@@ -54,7 +54,7 @@ class AllUser {
     data['nickName'] =nickName;
     data["fullName"] = fullName;
     data['username'] =username;
-    data['__v'] = this.iV;
+    data['__v'] = iV;
     return data;
   }
 }

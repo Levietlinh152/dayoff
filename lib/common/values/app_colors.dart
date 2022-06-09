@@ -13,7 +13,6 @@ class AppColors {
   static const Color backgroundInput = Color(0xFFFAFAFC);
   static const Color backgroundItemWheel_1 = Color(0xFF2E89FF);
   static const Color backgroundItemWheel_2 = Color(0xFFFCFCFB);
-  static const Color colorWheel_2 = Color(0xFFD3638F);
   static const Color pink10 = Color(0x1AE36386);
   static const Color black = Color(0xFF101434);
   static const Color white = Colors.white;
@@ -28,4 +27,20 @@ class AppColors {
   static const focusedText = Color(0xff4A52BF);
   static const placeholderText = Color(0xff455465);
   static const kPrimaryLightColor = Color(0xFFF1E6FF);
+  static LinearGradient getLinearGradient(MaterialColor color) {
+    return LinearGradient(
+      begin: Alignment.bottomLeft,
+      end: Alignment.topRight,
+      colors: [
+        color[300]!,
+        color[200]!,
+        color[100]!,
+      ],
+      stops: const [
+        0.4,
+        0.7,
+        0.9,
+      ],
+    );
+  }
 }

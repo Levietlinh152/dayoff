@@ -1,25 +1,33 @@
-import 'package:day_offf_app/screen/balance/balance_screen.dart';
+import 'package:day_offf_app/screen/all_project/controller/ProjectController.dart';
+import 'package:day_offf_app/screen/all_request/controller/AllRequestController.dart';
+import 'package:day_offf_app/screen/all_user/controller/AllUserController.dart';
 import 'package:day_offf_app/screen/calender/TableCalendar.dart';
+import 'package:day_offf_app/screen/genaral/Controller/ProfileController.dart';
+import 'package:day_offf_app/screen/my_request/controller/my_request_controller.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../common/values/app_colors.dart';
-import '../profile/profile_screen.dart';
+import '../Genaral/profile_screen.dart';
+import '../request_tab/request_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
-
 class _MainScreenState extends State<MainScreen> {
   Widget calender = TableEventsExample();
-  Widget balance = BalanceScreen();
+  Widget request = RequestTabScreen();
   Widget profile = ProfileScreen();
-  int selectedIndex = 1;
+  int selectedIndex = 0;
+  AllRequestController allRequestController= Get.put(AllRequestController());
+  AllUserController allUserController = Get.put(AllUserController());
+  ProjectController projectController = Get.put(ProjectController());
+  MyRequestController myRequestController= Get.put(MyRequestController());
+  ProfileController profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+      return Scaffold(
         body: getBody(selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: AppColors.amaranth,
@@ -35,11 +43,11 @@ class _MainScreenState extends State<MainScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.pie_chart),
-              label: 'Balance',
+              label: 'Request',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Profile',
+              icon: Icon(Icons.generating_tokens),
+              label: 'General',
             ),
           ],
           onTap: (int index) {
@@ -48,17 +56,22 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
         ),
-      ),
-    );
+      );
   }
 
   Widget getBody(int selectedIndex) {
-    if (selectedIndex == 0) {
+    if (selectedIndex == 0)  {
+      allRequestController.onInit();
       return calender;
     } else if (selectedIndex == 1) {
-      return balance;
+      myRequestController.onInit();
+      return request;
     } else {
-      return profile;
-    }
+
+        allRequestController.onInit();
+        allUserController.onInit();
+        projectController.onInit();
+        return profile;
+  }
   }
 }

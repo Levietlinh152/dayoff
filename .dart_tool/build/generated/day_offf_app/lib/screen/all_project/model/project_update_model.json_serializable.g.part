@@ -1,0 +1,28 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ProjectUpdateModel _$ProjectUpdateModelFromJson(Map<String, dynamic> json) =>
+    ProjectUpdateModel(
+      sId: json['sId'] as String?,
+      isDeleted: json['isDeleted'] as bool?,
+      startDate: json['startDate'] as String?,
+      state: json['state'] as String?,
+      member:
+          (json['member'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      projectName: json['projectName'] as String?,
+      projectManager: json['projectManager'] as String?,
+      iV: json['iV'] as int?,
+    );
+
+Map<String, dynamic> _$ProjectUpdateModelToJson(ProjectUpdateModel instance) =>
+    <String, dynamic>{
+      'sId': instance.sId,
+      'isDeleted': instance.isDeleted,
+      'startDate': instance.startDate,
+      'state': instance.state,
+      'member': instance.member,
+      'projectManager': instance.projectManager,
+      'projectName': instance.projectName,
+      'iV': instance.iV,
+    };

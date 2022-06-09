@@ -8,12 +8,15 @@ class LoginController extends GetxController {
   LoginRequestModel? loginRequestModel;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late final String? user_id;
+   final RxString user_id =''.obs;
+  RxBool isLoading = false.obs;
   var user_token;
   var responseAuthCode;
 
   Future<void> logIn() async {
+    isLoading.value= true;
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      isLoading.value= false;
       Get.snackbar('Enter your Username or Password', '');
     }
     final loginRequestModel =  LoginRequestModel(
@@ -21,6 +24,8 @@ class LoginController extends GetxController {
     APIService apiService =  APIService();
     var res = await apiService.login(loginRequestModel);
     user_token = res.token;
-    user_id = res.user_id;
+    user_id.value = res.user_id;
+    print(user_token);
+    isLoading.value=false;
   }
 }

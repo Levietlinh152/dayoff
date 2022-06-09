@@ -1,10 +1,9 @@
 import 'dart:collection';
-import 'package:day_offf_app/constants/app_url.dart';
 import 'package:day_offf_app/screen/all_request/controller/AllRequestController.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-AllRequestController allRequestController = Get.put(AllRequestController());
+AllRequestController allRequestController = Get.find();
 
 class Event {
   String? name;
@@ -22,10 +21,8 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: getHashCode,
 )..addAll(_kEventSource);
 
-final _kEventSource = Map.fromIterable(List.generate(50, (index) => index),
-    key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 3),
-    value: (item) => List.generate(
-        item % 4 + 3, (index) => Event('Name${index}', '', '', '', '')))
+final _kEventSource = { for (var item in List.generate(50, (index) => index)) DateTime.utc(kFirstDay.year, kFirstDay.month) : List.generate(
+        item % 4 + 3, (index) => Event('Name$index', '', '', '', '')) }
   ..addAll({
     kToday: [],
   });

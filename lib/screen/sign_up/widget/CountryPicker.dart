@@ -5,7 +5,7 @@ class CountryPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Demo for country picker')),
+      appBar: AppBar(title: const Text('Demo for country picker')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {

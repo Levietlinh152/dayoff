@@ -16,77 +16,95 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          Background(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    "LOGIN",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: AppColors.amaranth),
-                  ),
-                  SizedBox(height: size.height * 0.03),
-                  SvgPicture.asset(
-                    "assets/icons/login.svg",
-                    height: size.height * 0.35,
-                  ),
-                  SizedBox(height: size.height * 0.03),
+    return Stack(
+      children: [
+        Scaffold(
+          body: Stack(
+            children: [
+              Background(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text(
+                        "LOGIN",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: AppColors.amaranth),
+                      ),
+                      SizedBox(height: size.height * 0.03),
+                      SvgPicture.asset(
+                        "assets/icons/login.svg",
+                        height: size.height * 0.35,
+                      ),
+                      SizedBox(height: size.height * 0.03),
 
-                  // user name here
+                      // user name here
 
-                  RoundedInputField(
-                    textfielController: loginController.usernameController,
-                    hintText: "Your Email",
-                    onChanged: (value) => {},
-                  ),
+                      RoundedInputField(
+                        textfielController: loginController.usernameController,
+                        hintText: "Your Email",
+                        onChanged: (value) => {},
+                      ),
 
-                  // password here
-                  RoundedPasswordField(
-                    passwordController: loginController.passwordController,
-                    onChanged: (value) => {},
+                      // password here
+                      RoundedPasswordField(
+                        passwordController: loginController.passwordController,
+                        onChanged: (value) => {},
+                      ),
+                      RoundedButton(
+                        text: "LOGIN",
+                        press: () async {
+                          loginController.logIn();
+                        },
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const ForgotPasswordScreen();
+                                },
+                              ),
+                            );
+                          },
+                          child: const Text('Forgot Password?')),
+                      SizedBox(height: size.height * 0.03),
+                    ],
                   ),
-                  RoundedButton(
-                    text: "LOGIN",
-                    press: () async {
-                      loginController.logIn();
+                ),
+              ),
+              Positioned(
+                top: 30,
+                left: 10,
+                child: IconButton(
+                    onPressed: () {
+                      Get.back();
                     },
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const ForgotPasswordScreen();
-                            },
-                          ),
-                        );
-                      },
-                      child: const Text('Forgot Password?')),
-                  SizedBox(height: size.height * 0.03),
-                ],
+                    icon: const Icon(
+                      Icons.close,
+                      size: 30,
+                    )),
+              )
+            ],
+          ),
+        ),
+        Obx(() {
+          if (!loginController.isLoading.value) {
+            return Container();
+          }
+          return const Positioned.fill(
+            child: Center(
+              child: CircularProgressIndicator(
+                backgroundColor: AppColors.kPrimaryColor,
+                color: AppColors.white,
               ),
             ),
-          ),
-          Positioned(
-            top: 30,
-            left: 10,
-            child: IconButton(
-                onPressed: () {
-                },
-                icon: const Icon(
-                  Icons.close,
-                  size: 30,
-                )),
-          )
-        ],
-      ),
+          );
+        }),
+      ],
     );
   }
 }

@@ -98,18 +98,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "charts_common",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/charts_common-0.12.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "charts_flutter",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/charts_flutter-0.12.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "checked_yaml",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/checked_yaml-2.0.1",
       "packageUri": "lib/",
@@ -230,12 +218,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "flutter_clean_calendar",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_clean_calendar-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "flutter_datetime_picker",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_datetime_picker-1.5.1",
       "packageUri": "lib/",
@@ -260,8 +242,8 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "flutter_neat_and_clean_calendar",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_neat_and_clean_calendar-0.3.4+17",
+      "name": "flutter_staggered_grid_view",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_staggered_grid_view-0.6.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -322,6 +304,12 @@
     {
       "name": "graphs",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/graphs-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "group_radio_button",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/group_radio_button-1.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -512,12 +500,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "pie_chart",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/pie_chart-5.3.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "platform",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0",
       "packageUri": "lib/",
@@ -626,18 +608,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "syncfusion_flutter_charts",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_charts-20.1.50",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "syncfusion_flutter_core",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-20.1.50",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "table_calendar",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/table_calendar-3.0.5",
       "packageUri": "lib/",
@@ -722,7 +692,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-05-26T08:38:58.113709Z",
+  "generated": "2022-06-03T04:19:04.663454Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

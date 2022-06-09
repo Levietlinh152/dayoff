@@ -23,7 +23,7 @@ class _CustomDialogState extends State<CustomDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('AlertDialog Title'),
+      title: const Text('AlertDialog Title'),
       content: SingleChildScrollView(
         child: Column(
           children: const <Widget>[

@@ -1,5 +1,5 @@
 import 'package:day_offf_app/screen/change_password/change_password_screen.dart';
-import 'package:day_offf_app/screen/emplyee_profile/EmployeeScreen.dart';
+import 'package:day_offf_app/screen/employeeProfile/employeeScreen.dart';
 import 'package:day_offf_app/screen/login/login_screen.dart';
 import 'package:day_offf_app/screen/setting/widget/TextFuntion.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +18,13 @@ class SettingScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Column(
           children: [
             TextFuntion(
-                ontap: () => {Get.to(EmployeeScreen())},
+                ontap: () => {
+                  Get.to(EmployeeScreen())
+                },
                 lable: "Employee Profile"),
             TextFuntion(
                 ontap: () {
@@ -33,7 +35,7 @@ class SettingScreen extends StatelessWidget {
             TextFuntion(ontap: () {}, lable: "Chat With Support"),
             TextFuntion(
                 ontap: () {
-                  Get.to(LoginScreen());
+                  Get.offAll(LoginScreen());
                 },
                 lable: "Log out"),
           ],

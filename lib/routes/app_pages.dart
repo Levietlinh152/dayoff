@@ -1,5 +1,4 @@
 import 'package:day_offf_app/screen/main/main_screen.dart';
-import 'package:day_offf_app/screen/send_leave_request/SendLeaveRequest.dart';
 import 'package:day_offf_app/screen/setting/setting_screen.dart';
 import 'package:get/get.dart';
 
@@ -37,9 +36,6 @@ class AppPages {
       name: Routes.setting,
       page: () => const SettingScreen(),
     ),
-    GetPage<dynamic>(
-      name: Routes.sendleave,
-      page: () => const SendLeaveRequest(),
-    ),
+
   ];
 }

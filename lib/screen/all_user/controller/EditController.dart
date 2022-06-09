@@ -1,9 +1,7 @@
 import 'package:day_offf_app/screen/all_user/model/Usemodel.dart';
 import 'package:day_offf_app/screen/all_user/service/EditService.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../service/AllService.dart';
 import 'AllUserController.dart';
 
 class EditUserController extends GetxController{
@@ -15,6 +13,5 @@ class EditUserController extends GetxController{
    await editUserEdit.updateEmployee(id, allUser);
    Get.back();
    allUserController.onInit();
-
   }
 }

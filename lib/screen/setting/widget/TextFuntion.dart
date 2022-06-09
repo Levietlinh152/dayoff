@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TextFuntion extends StatelessWidget {
-  late final Function ontap;
-  late final String lable;
+   final Function ontap;
+   final String lable;
 
-  TextFuntion({required this.ontap, required this.lable});
+  const TextFuntion({required this.ontap, required this.lable});
 
   @override
   Widget build(BuildContext context) {

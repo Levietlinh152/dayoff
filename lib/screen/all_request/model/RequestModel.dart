@@ -1,3 +1,4 @@
+// ignore: file_names
 class AllRequestModel {
   String? sId;
   User? user;
@@ -8,6 +9,7 @@ class AllRequestModel {
   String? createdDate;
   bool? isMultipleDay;
   bool? isMorning;
+  bool? isAfternoon;
   int? iV;
 
   AllRequestModel(
@@ -20,11 +22,12 @@ class AllRequestModel {
       this.createdDate,
       this.isMultipleDay,
       this.isMorning,
+        this.isAfternoon,
       this.iV});
 
   AllRequestModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
     state = json['state'];
     toDay = json['toDay'];
     reason = json['reason'];
@@ -32,11 +35,12 @@ class AllRequestModel {
     createdDate = json['createdDate'];
     isMultipleDay = json['isMultipleDay'];
     isMorning = json['isMorning'];
+    isAfternoon=json['isAfternoon'];
     iV = json['__v'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     if (user != null) {
       data['user'] = user!.toJson();
@@ -48,6 +52,7 @@ class AllRequestModel {
     data['createdDate'] = createdDate;
     data['isMultipleDay'] = isMultipleDay;
     data['isMorning'] = isMorning;
+    data['isAfternoon']=isAfternoon;
     data['__v'] = iV;
     return data;
   }
@@ -65,7 +70,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     data['nickName'] = nickName;
     return data;

@@ -32,6 +32,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/feedbackImage.png
+  AssetGenImage get feedbackImage =>
+      const AssetGenImage('assets/images/feedbackImage.png');
+
   /// File path: assets/images/left_top.png
   AssetGenImage get leftTop =>
       const AssetGenImage('assets/images/left_top.png');
@@ -40,12 +44,20 @@ class $AssetsImagesGen {
   AssetGenImage get leftTopPink =>
       const AssetGenImage('assets/images/left_top_pink.png');
 
+  /// File path: assets/images/main_bottom.png
+  AssetGenImage get mainBottom =>
+      const AssetGenImage('assets/images/main_bottom.png');
+
   /// File path: assets/images/right_bottom.png
   AssetGenImage get rightBottom =>
       const AssetGenImage('assets/images/right_bottom.png');
 
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
+
+  /// File path: assets/images/webInterFace.png
+  AssetGenImage get webInterFace =>
+      const AssetGenImage('assets/images/webInterFace.png');
 }
 
 class Assets {

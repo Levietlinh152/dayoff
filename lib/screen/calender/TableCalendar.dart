@@ -15,6 +15,7 @@ class TableEventsExample extends StatefulWidget {
 
 class _TableEventsExampleState extends State<TableEventsExample> {
   late final ValueNotifier<List<Event>> _selectedEvents;
+  CalendarController controller = Get.put(CalendarController());
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
@@ -26,7 +27,6 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   @override
   void initState() {
     super.initState();
-
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
   }
@@ -36,60 +36,16 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     _selectedEvents.dispose();
     super.dispose();
   }
-
   List<Event> _getEventsForDay(DateTime day) {
     // Implementation example
-    return kEvents[day] ?? [];
+    return controller.listRequestForDay(day);
   }
-
-  List<Event> _getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
-    final days = daysInRange(start, end);
-
-    return [
-      for (final d in days) ..._getEventsForDay(d),
-    ];
-  }
-
-  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
-    if (!isSameDay(_selectedDay, selectedDay)) {
-      setState(() {
-        _selectedDay = selectedDay;
-        _focusedDay = focusedDay;
-        _rangeStart = null; // Important to clean those
-        _rangeEnd = null;
-        _rangeSelectionMode = RangeSelectionMode.toggledOff;
-      });
-
-      _selectedEvents.value = _getEventsForDay(selectedDay);
-    }
-  }
-
-  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
-    setState(() {
-      _selectedDay = null;
-      _focusedDay = focusedDay;
-      _rangeStart = start;
-      _rangeEnd = end;
-      _rangeSelectionMode = RangeSelectionMode.toggledOn;
-    });
-
-    // `start` or `end` could be null
-    if (start != null && end != null) {
-      _selectedEvents.value = _getEventsForRange(start, end);
-    } else if (start != null) {
-      _selectedEvents.value = _getEventsForDay(start);
-    } else if (end != null) {
-      _selectedEvents.value = _getEventsForDay(end);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    CalendarController controller = Get.put(CalendarController());
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TableCalendar - Events'),
+        title: const Text('Table Calendar'),
       ),
       body: Column(
         children: [
@@ -110,16 +66,10 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             ),
             onDaySelected: (selectedDay, focusedDay) async {
               // _selectedDay;
-              focusedDay = await selectedDay;
+              _focusedDay = focusedDay;
+              _selectedDay = selectedDay;
+              focusedDay = selectedDay;
               controller.filter(selectedDay);
-            },
-            onRangeSelected: _onRangeSelected,
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
-              }
             },
             onPageChanged: (focusedDay) {
               _focusedDay = focusedDay;
@@ -130,191 +80,96 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                 child: ListView.builder(
                   itemCount: controller.listRequestDay.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: ListTile(
-                        leading: const CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(AppUrl.avatar_url),
-                        ),
-                        title: CustomText(
-                          text:
-                              '${controller.listRequestDay[index].user!.nickName}',
-                          size: 20,
-                          color: AppColors.black,
-                          weight: FontWeight.bold,
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                ),
-                                CustomText(
-                                  text: controller.listRequestDay[index].fromDay
-                                      .toString()
-                                      .substring(0, 10),
-                                  size: 15,
-                                  color: AppColors.doveGray,
-                                  weight: FontWeight.w500,
-                                )
-                              ],
+                    return Card(
+                      margin: const EdgeInsets.all(10),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            border: Border(
+                              bottom:
+                              BorderSide(width: 1.0, color: AppColors.border),
                             ),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.calendar_today_outlined,
-                                  size: 15,
-                                ),
-                                CustomText(
-                                  text: controller.listRequestDay[index].toDay
-                                      .toString()
-                                      .substring(0, 10),
-                                  size: 15,
-                                  color: AppColors.doveGray,
-                                  weight: FontWeight.w500,
-                                )
-                              ],
-                            ),
-                            CustomText(
-                              text:
-                                  'Reason : ${controller.listRequestDay[index].reason}',
-                              size: 15,
-                              color: AppColors.amaranth,
-                              weight: FontWeight.w500,
-                            ),
-                          ],
-                        ),
-                        isThreeLine: true,
-                        trailing: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              decoration: const BoxDecoration(
-                                  color: AppColors.amaranth,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8))),
-                              child: CustomText(
+                          ),
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage(AppUrl.avatar_url),
+                          ),
+                          title: CustomText(
+                            text:
+                                '${controller.listRequestDay[index].user!.nickName}',
+                            size: 20,
+                            color: AppColors.black,
+                            weight: FontWeight.bold,
+                          ),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.calendar_today_outlined,
+                                    size: 15,
+                                  ),
+                                  CustomText(
+                                    text: controller.listRequestDay[index].fromDay
+                                        .toString()
+                                        .substring(0, 10),
+                                    size: 15,
+                                    color: AppColors.doveGray,
+                                    weight: FontWeight.w500,
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.calendar_today_outlined,
+                                    size: 15,
+                                  ),
+                                  CustomText(
+                                    text: controller.listRequestDay[index].toDay
+                                        .toString()
+                                        .substring(0, 10),
+                                    size: 15,
+                                    color: AppColors.doveGray,
+                                    weight: FontWeight.w500,
+                                  )
+                                ],
+                              ),
+                              CustomText(
                                 text:
-                                    '  ${controller.listRequestDay[index].state}  ',
+                                    'Reason : ${controller.listRequestDay[index].reason}',
                                 size: 15,
-                                color: AppColors.white,
+                                color: AppColors.amaranth,
                                 weight: FontWeight.w500,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          isThreeLine: true,
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                    color: AppColors.amaranth,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                                child: CustomText(
+                                  text:
+                                      '  ${controller.listRequestDay[index].state}  ',
+                                  size: 15,
+                                  color: AppColors.white,
+                                  weight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
               ))
-          // Expanded(
-          //   child: ValueListenableBuilder<List<Event>>(
-          //     valueListenable: _selectedEvents,
-          //     builder: (context, value, _) {
-          //       return ListView.builder(
-          //         itemCount: value.length,
-          //         itemBuilder: (context, index) {
-          //           return Container(
-          //             margin: const EdgeInsets.symmetric(
-          //               horizontal: 12.0,
-          //               vertical: 4.0,
-          //             ),
-          //             decoration: BoxDecoration(
-          //               border: Border.all(),
-          //               borderRadius: BorderRadius.circular(12.0),
-          //             ),
-          //            child: ListTile(
-          //               leading: const CircleAvatar(
-          //                 radius: 30,
-          //                 backgroundImage: NetworkImage(AppUrl.avatar_url),
-          //               ),
-          //               title: CustomText(
-          //                 text:
-          //                 '${allRequestController.listRequest[index].user!.nickName}',
-          //                 size: 20,
-          //                 color: AppColors.black,
-          //                 weight: FontWeight.bold,
-          //               ),
-          //               subtitle: Column(
-          //                 crossAxisAlignment: CrossAxisAlignment.start,
-          //                 children: [
-          //                   Row(
-          //                     children: [
-          //                       const Icon(
-          //                         Icons.calendar_today_outlined,
-          //                         size: 15,
-          //                       ),
-          //                       CustomText(
-          //                         text:
-          //                         allRequestController.listRequest[index].fromDay.toString().substring(0,10),
-          //                         size: 15,
-          //                         color: AppColors.doveGray,
-          //                         weight: FontWeight.w500,
-          //                       )
-          //                     ],
-          //                   ),
-          //                   Row(
-          //                     children: [
-          //                       const Icon(
-          //                         Icons.calendar_today_outlined,
-          //                         size: 15,
-          //                       ),
-          //                       CustomText(
-          //                         text:
-          //                         allRequestController.listRequest[index].toDay.toString().substring(0,10),
-          //                         size: 15,
-          //                         color: AppColors.doveGray,
-          //                         weight: FontWeight.w500,
-          //                       )
-          //                     ],
-          //                   ),
-          //                   CustomText(
-          //                     text:
-          //                     'Reason : ${allRequestController.listRequest[index].reason}',
-          //                     size: 15,
-          //                     color: AppColors.amaranth,
-          //                     weight: FontWeight.w500,
-          //                   ),
-          //                 ],
-          //               ),
-          //               isThreeLine: true,
-          //               trailing: Column(
-          //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //                 children: [
-          //                   Container(
-          //                     decoration: const BoxDecoration(
-          //                         color: AppColors.amaranth,
-          //                         borderRadius:
-          //                         BorderRadius.all(Radius.circular(8))),
-          //                     child: CustomText(
-          //                       text:
-          //                       '  ${allRequestController.listRequest[index].state}  ',
-          //                       size: 15,
-          //                       color: AppColors.white,
-          //                       weight: FontWeight.w500,
-          //                     ),
-          //                   ),
-          //                 ],
-          //               ),
-          //             ),
-          //           );
-          //         },
-          //       );
-          //     },
-          //   ),
-          // ),
         ],
       ),
     );

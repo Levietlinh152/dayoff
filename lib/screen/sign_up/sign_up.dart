@@ -107,7 +107,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           'JUNIOR',
                           'MIDDLE',
                           'SENIOR',
-                          'PINCIPAL'
                         ].map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,

@@ -1,3 +1,5 @@
+import 'package:json_annotation/json_annotation.dart';
+part '';
 class UpdateUserModel {
   String? fullName;
   String? nickName;

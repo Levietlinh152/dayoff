@@ -15,10 +15,8 @@ class UpdateRequestService {
           'http://66.42.56.32:3000/request/update-request/$id',
           data: allRequestModel.toJson());
       if (response.statusCode == 200 || response.statusCode == 201) {
-        Get.snackbar("Success", 'message');
       }
     } catch (Exception) {
-      print(Exception);
     }
   }
 }

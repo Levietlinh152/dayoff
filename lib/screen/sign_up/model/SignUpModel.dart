@@ -1,4 +1,3 @@
-import 'package:day_offf_app/screen/sign_up/model/roles_enum.dart';
 
 class SignUpModel {
   late String fullName;
@@ -35,7 +34,7 @@ class SignUpModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['fullName'] = fullName;
     data['nickName'] = nickName;
     data['email'] = email;
