@@ -11,10 +11,10 @@ class AllRequest extends StatefulWidget {
   @override
   State<AllRequest> createState() => _AllRequestState();
 }
+
 class _AllRequestState extends State<AllRequest> {
   AllRequestController allRequestController = Get.find();
-@override
-
+  @override
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,8 +24,8 @@ class _AllRequestState extends State<AllRequest> {
             title: const Text('List Request'),
           ),
           body: Center(
-            child:  Obx(
-                  () => ListView.builder(
+            child: Obx(
+              () => ListView.builder(
                   itemCount: allRequestController.listRequest.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Card(
@@ -33,24 +33,25 @@ class _AllRequestState extends State<AllRequest> {
                         child: Container(
                           decoration: const BoxDecoration(
                             border: Border(
-                              bottom:
-                              BorderSide(width: 1.0, color: AppColors.border),
+                              bottom: BorderSide(
+                                  width: 1.0, color: AppColors.border),
                             ),
                           ),
                           child: InkWell(
                             onTap: () {
                               Get.to(DetailRequest(
                                   request:
-                                  allRequestController.listRequest[index]));
+                                      allRequestController.listRequest[index]));
                             },
                             child: ListTile(
                               leading: const CircleAvatar(
                                 radius: 35,
-                                backgroundImage: NetworkImage(AppUrl.avatar_url),
+                                backgroundImage:
+                                    NetworkImage(AppUrl.avatar_url),
                               ),
                               title: CustomText(
                                 text:
-                                '${allRequestController.listRequest[index].user!.nickName}',
+                                    '${allRequestController.listRequest[index].user!.nickName}',
                                 size: 20,
                                 color: AppColors.black,
                                 weight: FontWeight.bold,
@@ -94,7 +95,7 @@ class _AllRequestState extends State<AllRequest> {
                                   ),
                                   CustomText(
                                     text:
-                                    'Reason : ${allRequestController.listRequest[index].reason}',
+                                        'Reason : ${allRequestController.listRequest[index].reason}',
                                     size: 15,
                                     color: AppColors.amaranth,
                                     weight: FontWeight.w500,
@@ -103,16 +104,19 @@ class _AllRequestState extends State<AllRequest> {
                               ),
                               isThreeLine: true,
                               trailing: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    decoration:  BoxDecoration(
-                                        color: allRequestController.stateColor(allRequestController.listRequest[index].state!),
-                                        borderRadius:
-                                        const BorderRadius.all(Radius.circular(8))),
+                                    decoration: BoxDecoration(
+                                        color: allRequestController.stateColor(
+                                            allRequestController
+                                                .listRequest[index].state!),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(8))),
                                     child: CustomText(
                                       text:
-                                      '  ${allRequestController.listRequest[index].state}  ',
+                                          '  ${allRequestController.listRequest[index].state}  ',
                                       size: 15,
                                       color: AppColors.white,
                                       weight: FontWeight.w500,

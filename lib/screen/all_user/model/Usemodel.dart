@@ -14,17 +14,17 @@ class AllUser {
 
   AllUser(
       {this.sId,
-        this.level,
-        this.timeOffRemaining,
-        this.dateOfBirth,
-        this.dateCreated,
-        this.roles,
-        this.citizenID,
-        this.email,
-        this.nickName,
-        this.fullName,
-        this.username,
-        this.iV});
+      this.level,
+      this.timeOffRemaining,
+      this.dateOfBirth,
+      this.dateCreated,
+      this.roles,
+      this.citizenID,
+      this.email,
+      this.nickName,
+      this.fullName,
+      this.username,
+      this.iV});
 
   AllUser.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -46,14 +46,14 @@ class AllUser {
     data['_id'] = sId;
     data['level'] = level;
     data['timeOffRemaining'] = timeOffRemaining;
-    data['dateOfBirth']=dateOfBirth;
+    data['dateOfBirth'] = dateOfBirth;
     data['dateCreated'] = dateCreated;
-    data['roles'] =roles;
-    data['citizenID'] =citizenID;
+    data['roles'] = roles;
+    data['citizenID'] = citizenID;
     data['email'] = email;
-    data['nickName'] =nickName;
+    data['nickName'] = nickName;
     data["fullName"] = fullName;
-    data['username'] =username;
+    data['username'] = username;
     data['__v'] = iV;
     return data;
   }

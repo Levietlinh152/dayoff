@@ -14,9 +14,7 @@ class UpdateRequestService {
       final response = await dio.patch(
           'http://66.42.56.32:3000/request/update-request/$id',
           data: allRequestModel.toJson());
-      if (response.statusCode == 200 || response.statusCode == 201) {
-      }
-    } catch (Exception) {
-    }
+      if (response.statusCode == 200 || response.statusCode == 201) {}
+    } catch (Exception) {}
   }
 }

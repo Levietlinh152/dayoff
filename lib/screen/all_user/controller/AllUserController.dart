@@ -4,7 +4,6 @@ import 'package:day_offf_app/screen/all_user/service/AllService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class AllUserController extends GetxController {
   TextEditingController dateController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
@@ -21,9 +20,9 @@ class AllUserController extends GetxController {
   late String responseCode;
   late DetailUser detailUser;
   @override
-  void onInit() async{
+  void onInit() async {
     // TODO: implement onInit
-    futureStudent.value= await AllService().fetchPost();
+    futureStudent.value = await AllService().fetchPost();
     super.onInit();
   }
 }

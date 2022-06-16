@@ -5,10 +5,12 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 LoginController controller = Get.find();
+
 class MemberService {
   var dio = Dio();
 
-  Future<void> updateProject(String id,UpdateProjectModel updateProjectModel) async {
+  Future<void> updateProject(
+      String id, UpdateProjectModel updateProjectModel) async {
     try {
       dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
       final response = await dio.patch(
@@ -20,7 +22,7 @@ class MemberService {
     }
   }
 
-  Future<void> addMember(String id,AddMemberModel addMemberModel) async {
+  Future<void> addMember(String id, AddMemberModel addMemberModel) async {
     try {
       dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
       final response = await dio.patch(
@@ -31,4 +33,4 @@ class MemberService {
       return e.response!.data;
     }
   }
-  }
+}

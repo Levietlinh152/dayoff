@@ -23,11 +23,10 @@ class CustomText extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: GoogleFonts.lato(
-          fontSize: size ?? 16,
-          color: color ?? const Color(0xFF101434),
-          fontWeight: weight ?? FontWeight.normal,
-        ),
+        fontSize: size ?? 16,
+        color: color ?? const Color(0xFF101434),
+        fontWeight: weight ?? FontWeight.normal,
+      ),
     );
-
   }
 }

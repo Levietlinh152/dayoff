@@ -1,9 +1,11 @@
+
 import 'package:day_offf_app/widget/text_field_container.dart';
 import 'package:flutter/material.dart';
-
 import '../common/values/app_colors.dart';
 
 class RoundedInputField extends StatelessWidget {
+  final FormFieldValidator<String>? validator;
+  final String? errorText;
   final TextInputType? inputType;
   final onTap;
   final String hintText;
@@ -13,6 +15,8 @@ class RoundedInputField extends StatelessWidget {
   final TextEditingController? textfielController;
   const RoundedInputField({
     Key? key,
+    this.validator,
+    this.errorText,
     this.inputType,
     this.initValue,
     this.onTap,
@@ -32,17 +36,19 @@ class RoundedInputField extends StatelessWidget {
         controller: textfielController,
         onChanged: onChanged,
         cursorColor: AppColors.kPrimaryColor,
+        validator: validator ,
         decoration: InputDecoration(
           icon: Icon(
             icon,
             color: AppColors.kPrimaryColor,
           ),
           hintText: hintText,
-          border: InputBorder.none,
           focusedBorder: InputBorder.none,
           errorBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
+          focusedErrorBorder: InputBorder.none,
+          errorText: errorText,
         ),
       ),
     );

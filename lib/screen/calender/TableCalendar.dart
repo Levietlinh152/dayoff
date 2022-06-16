@@ -29,6 +29,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     super.initState();
     _selectedDay = _focusedDay;
     _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
+    controller.onInit();
   }
 
   @override
@@ -36,13 +37,14 @@ class _TableEventsExampleState extends State<TableEventsExample> {
     _selectedEvents.dispose();
     super.dispose();
   }
+
   List<Event> _getEventsForDay(DateTime day) {
     // Implementation example
     return controller.listRequestForDay(day);
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Table Calendar'),
@@ -50,6 +52,8 @@ class _TableEventsExampleState extends State<TableEventsExample> {
       body: Column(
         children: [
           TableCalendar<Event>(
+            enabledDayPredicate:  (DateTime val) =>
+            val.weekday ==5 ||val.weekday==4||val.weekday==3||val.weekday==2||val.weekday==1,
             firstDay: kFirstDay,
             lastDay: kLastDay,
             focusedDay: _focusedDay,
@@ -84,11 +88,11 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                       margin: const EdgeInsets.all(10),
                       child: Container(
                         decoration: const BoxDecoration(
-                            border: Border(
-                              bottom:
-                              BorderSide(width: 1.0, color: AppColors.border),
-                            ),
+                          border: Border(
+                            bottom:
+                                BorderSide(width: 1.0, color: AppColors.border),
                           ),
+                        ),
                         child: ListTile(
                           leading: const CircleAvatar(
                             radius: 30,
@@ -111,7 +115,8 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                                     size: 15,
                                   ),
                                   CustomText(
-                                    text: controller.listRequestDay[index].fromDay
+                                    text: controller
+                                        .listRequestDay[index].fromDay
                                         .toString()
                                         .substring(0, 10),
                                     size: 15,
@@ -150,10 +155,10 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                decoration: const BoxDecoration(
-                                    color: AppColors.amaranth,
+                                decoration:  BoxDecoration(
+                                    color: controller.stateColor(controller.listRequestDay[index].state!),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
+                                        const BorderRadius.all(Radius.circular(8))),
                                 child: CustomText(
                                   text:
                                       '  ${controller.listRequestDay[index].state}  ',

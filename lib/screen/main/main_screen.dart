@@ -15,63 +15,62 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
 class _MainScreenState extends State<MainScreen> {
   Widget calender = TableEventsExample();
   Widget request = RequestTabScreen();
   Widget profile = ProfileScreen();
   int selectedIndex = 0;
-  AllRequestController allRequestController= Get.put(AllRequestController());
+  AllRequestController allRequestController = Get.put(AllRequestController());
   AllUserController allUserController = Get.put(AllUserController());
   ProjectController projectController = Get.put(ProjectController());
-  MyRequestController myRequestController= Get.put(MyRequestController());
+  MyRequestController myRequestController = Get.put(MyRequestController());
   ProfileController profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        body: getBody(selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: AppColors.amaranth,
-          unselectedItemColor: Colors.grey,
-          selectedFontSize: 14,
-          unselectedFontSize: 14,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: selectedIndex,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month),
-              label: 'Calender',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pie_chart),
-              label: 'Request',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.generating_tokens),
-              label: 'General',
-            ),
-          ],
-          onTap: (int index) {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-        ),
-      );
+    return Scaffold(
+      body: getBody(selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: selectedIndex,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_month),
+            label: 'Calender',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pie_chart),
+            label: 'Request',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.generating_tokens),
+            label: 'General',
+          ),
+        ],
+        onTap: (int index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+      ),
+    );
   }
 
   Widget getBody(int selectedIndex) {
-    if (selectedIndex == 0)  {
+    if (selectedIndex == 0) {
       allRequestController.onInit();
       return calender;
     } else if (selectedIndex == 1) {
       myRequestController.onInit();
       return request;
     } else {
-
-        allRequestController.onInit();
-        allUserController.onInit();
-        projectController.onInit();
-        return profile;
-  }
+      allRequestController.onInit();
+      allUserController.onInit();
+      projectController.onInit();
+      return profile;
+    }
   }
 }

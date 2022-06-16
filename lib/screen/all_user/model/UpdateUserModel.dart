@@ -1,22 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-part '';
 class UpdateUserModel {
   String? fullName;
   String? nickName;
   String? email;
   String? roles;
   String? citizenID;
+  String? address;
   String? level;
-  DateTime? dateOfBirth;
+  String? dateOfBirth;
+  String? password;
 
   UpdateUserModel(
       {this.fullName,
-      this.nickName,
-      this.email,
-      this.roles,
-      this.citizenID,
-      this.level,
-      this.dateOfBirth});
+        this.nickName,
+        this.email,
+        this.roles,
+        this.citizenID,
+        this.address,
+        this.level,
+        this.dateOfBirth,
+        this.password});
 
   UpdateUserModel.fromJson(Map<String, dynamic> json) {
     fullName = json['fullName'];
@@ -24,19 +26,23 @@ class UpdateUserModel {
     email = json['email'];
     roles = json['roles'];
     citizenID = json['citizenID'];
+    address = json['address'];
     level = json['level'];
     dateOfBirth = json['dateOfBirth'];
+    password = json['password'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['fullName'] = fullName;
-    data['nickName'] = nickName;
-    data['email'] = email;
-    data['roles'] = roles;
-    data['citizenID'] = citizenID;
-    data['level'] = level;
-    data['dateOfBirth'] = dateOfBirth?.toIso8601String();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['fullName'] = this.fullName;
+    data['nickName'] = this.nickName;
+    data['email'] = this.email;
+    data['roles'] = this.roles;
+    data['citizenID'] = this.citizenID;
+    data['address'] = this.address;
+    data['level'] = this.level;
+    data['dateOfBirth'] = this.dateOfBirth;
+    data['password'] = this.password;
     return data;
   }
 }

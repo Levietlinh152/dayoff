@@ -1,4 +1,4 @@
-#Thu Jun 09 16:09:54 ICT 2022
+#Thu Jun 16 15:10:34 ICT 2022
 base.0=C\:\\Users\\linh\\AndroidStudioProjects\\vatek_internal_mobile\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

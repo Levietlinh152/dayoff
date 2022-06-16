@@ -4,7 +4,7 @@ import '../../all_request/model/RequestModel.dart';
 
 class RequestTabController extends GetxController {
   RxList<AllRequestModel> pendingRequest = <AllRequestModel>[].obs;
-  RxList<AllRequestModel> listRequest =<AllRequestModel>[].obs;
+  RxList<AllRequestModel> listRequest = <AllRequestModel>[].obs;
 
   @override
   void onInit() async {

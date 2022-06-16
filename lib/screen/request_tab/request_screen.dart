@@ -3,7 +3,6 @@ import 'package:day_offf_app/screen/pending_request/pending_request.dart';
 import 'package:flutter/material.dart';
 
 class RequestTabScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -11,7 +10,7 @@ class RequestTabScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize:const  Size.fromHeight(60.0),
+          preferredSize: const Size.fromHeight(60.0),
           child: AppBar(
             bottom: const TabBar(
               tabs: <Widget>[
@@ -25,11 +24,8 @@ class RequestTabScreen extends StatelessWidget {
             ),
           ),
         ),
-        body:  TabBarView(
-          children: [
-            MyRequestScreen(),
-            PendingRequestScreen()
-          ],
+        body: TabBarView(
+          children: [MyRequestScreen(), PendingRequestScreen()],
         ),
       ),
     );

@@ -5,9 +5,8 @@ import 'package:get/get.dart';
 
 class EditUserService {
   var dio = Dio();
-LoginController controller = Get.find();
-  Future<void> updateEmployee(
-      String? id, AllUser allUser) async {
+  LoginController controller = Get.find();
+  Future<void> updateEmployee(String? id, AllUser allUser) async {
     try {
       dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
       final response = await dio.patch(

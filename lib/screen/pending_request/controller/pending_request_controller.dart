@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 
 import '../../all_request/model/RequestModel.dart';
 
-class PendingRequestController extends GetxController{
+class PendingRequestController extends GetxController {
   RxList<AllRequestModel> listPendingRequest = <AllRequestModel>[].obs;
-@override
+  @override
   Future<void> onInit() async {
-  listPendingRequest.value= await PendingRequestService().fetchPendingRequest();
+    listPendingRequest.value =
+        await PendingRequestService().fetchPendingRequest();
     super.onInit();
   }
 }

@@ -12,7 +12,7 @@ class RequestController extends GetxController {
   TextEditingController endDateController = TextEditingController();
 
   MyRequestController myRequestController = Get.find();
-  PendingRequestController pendingRequestController= Get.find();
+  PendingRequestController pendingRequestController = Get.find();
 
   final List<String> status = ["Morning", "Multi Day", "Afternoon"];
 
@@ -30,15 +30,15 @@ class RequestController extends GetxController {
   bool isAfternoon = false;
 
   RxString groupValue = "".obs;
-  RxBool isLoading=false.obs;
+  RxBool isLoading = false.obs;
 
-  void checkDay(){
-    if(groupValue=="Morning"){
+  void checkDay() {
+    if (groupValue == "Morning") {
       isMorning = true;
-    } else if(groupValue=="Multi Day"){
+    } else if (groupValue == "Multi Day") {
       isMultipleDay = true;
-    } else if(groupValue=="Afternoon") {
-      isAfternoon =true;
+    } else if (groupValue == "Afternoon") {
+      isAfternoon = true;
     }
   }
 
@@ -46,7 +46,7 @@ class RequestController extends GetxController {
     isLoading.value = true;
     checkDay();
     final dayoff = DayOff(
-      isAfternoon: isAfternoon ,
+      isAfternoon: isAfternoon,
       isMorning: isMorning,
       isMultipleDay: isMultipleDay,
       fromDay: DateFormat('yyyy-MM-dd')

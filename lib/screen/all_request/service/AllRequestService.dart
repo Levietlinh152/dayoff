@@ -31,5 +31,4 @@ class AllRequestDayOffService {
       throw Exception('Failed to load post');
     }
   }
-
 }

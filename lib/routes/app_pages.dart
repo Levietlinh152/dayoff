@@ -36,6 +36,5 @@ class AppPages {
       name: Routes.setting,
       page: () => const SettingScreen(),
     ),
-
   ];
 }

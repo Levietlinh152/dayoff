@@ -1,4 +1,3 @@
-
 class SignUpModel {
   late String fullName;
   late String nickName;

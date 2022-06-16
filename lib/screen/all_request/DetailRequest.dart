@@ -16,10 +16,12 @@ class DetailRequest extends StatefulWidget {
   @override
   State<DetailRequest> createState() => _DetailRequestState();
 }
-UpdateRequestController updateRequestController = Get.put(UpdateRequestController());
+
+UpdateRequestController updateRequestController =
+    Get.put(UpdateRequestController());
 
 class _DetailRequestState extends State<DetailRequest> {
-  final _listStateText = ["REQUESTED", "APPROVED","REJECT"];
+  final _listStateText = ["REQUESTED", "APPROVED", "REJECT"];
   var _tabTextIconIndexSelected;
 
   bool _isShown = true;
@@ -56,12 +58,13 @@ class _DetailRequestState extends State<DetailRequest> {
         });
   }
 
-
   @override
   void initState() {
-    _tabTextIconIndexSelected=updateRequestController.stateIndex(widget.request.state!);
+    _tabTextIconIndexSelected =
+        updateRequestController.stateIndex(widget.request.state!);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,52 +73,49 @@ class _DetailRequestState extends State<DetailRequest> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              leading: const CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(AppUrl.avatar_url),
-              ),
-              title: CustomText(
-                text: '${widget.request.user?.nickName}',
-                size: 20,
-                color: AppColors.black,
-                weight: FontWeight.bold,
-              ),
-              subtitle: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.calendar_month,
-                          color: AppColors.doveGray,
-                        ),
-                        CustomText(
-                          text: widget.request.fromDay
-                              .toString()
-                              .substring(0, 10),
-                          color: AppColors.doveGray,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.calendar_month,
-                          color: AppColors.doveGray,
-                        ),
-                        CustomText(
-                          text: widget.request.toDay
-                              .toString()
-                              .substring(0, 10),
-                          color: AppColors.doveGray,
-                        ),
-                      ],
-                    ),
-                  ]),
-              trailing:
-                _buildState()
-            ),
-
+                leading: const CircleAvatar(
+                  radius: 25,
+                  backgroundImage: NetworkImage(AppUrl.avatar_url),
+                ),
+                title: CustomText(
+                  text: '${widget.request.user?.nickName}',
+                  size: 20,
+                  color: AppColors.black,
+                  weight: FontWeight.bold,
+                ),
+                subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.calendar_month,
+                            color: AppColors.doveGray,
+                          ),
+                          CustomText(
+                            text: widget.request.fromDay
+                                .toString()
+                                .substring(0, 10),
+                            color: AppColors.doveGray,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.calendar_month,
+                            color: AppColors.doveGray,
+                          ),
+                          CustomText(
+                            text: widget.request.toDay
+                                .toString()
+                                .substring(0, 10),
+                            color: AppColors.doveGray,
+                          ),
+                        ],
+                      ),
+                    ]),
+                trailing: _buildState()),
             Container(
                 padding: const EdgeInsets.fromLTRB(20, 10, 10, 0),
                 child: CustomText(
@@ -125,59 +125,63 @@ class _DetailRequestState extends State<DetailRequest> {
             Container(
                 padding: const EdgeInsets.fromLTRB(20, 10, 10, 0),
                 child: CustomText(
-                  text: 'Time off : ${updateRequestController.state(widget.request.isMorning!, widget.request.isMultipleDay!)}',
+                  text:
+                      'Time off : ${updateRequestController.state(widget.request.isMorning!, widget.request.isMultipleDay!)}',
                   color: Colors.grey,
                 )),
           ],
         ));
   }
- _buildState(){
-    return  FlutterToggleTab(
+
+  _buildState() {
+    return FlutterToggleTab(
       width: 40,
       height: 30,
       borderRadius: 10,
       selectedBackgroundColors: const [AppColors.success],
       unSelectedBackgroundColors: const [Colors.grey],
       selectedTextStyle: const TextStyle(
-          color: AppColors.white,
-          fontSize: 8,
-          fontWeight: FontWeight.w600),
+          color: AppColors.white, fontSize: 8, fontWeight: FontWeight.w600),
       unSelectedTextStyle: const TextStyle(
-          color: AppColors.white,
-          fontSize: 8,
-          fontWeight: FontWeight.w400),
+          color: AppColors.white, fontSize: 8, fontWeight: FontWeight.w400),
       labels: _listStateText,
       selectedIndex: _tabTextIconIndexSelected,
-
       selectedLabelIndex: (index) {
         setState(() {
           _tabTextIconIndexSelected = index;
-          if(_tabTextIconIndexSelected==0){
-            updateRequestController.updateRequest("REQUESTED", widget.request.sId!);
-          }
-          else if(_tabTextIconIndexSelected==1){
-            updateRequestController.updateRequest("APPROVED", widget.request.sId!);
-          }
-          else{
-            updateRequestController.updateRequest("REJECTED", widget.request.sId!);
+          if (_tabTextIconIndexSelected == 0) {
+            updateRequestController.updateRequest(
+                "REQUESTED", widget.request.sId!);
+          } else if (_tabTextIconIndexSelected == 1) {
+            updateRequestController.updateRequest(
+                "APPROVED", widget.request.sId!);
+          } else {
+            updateRequestController.updateRequest(
+                "REJECTED", widget.request.sId!);
           }
         });
       },
     );
- }
-  _appbar(){
+  }
+
+  _appbar() {
     return AppBar(
-      title: const CustomText(text:""),
+      title: const CustomText(text: ""),
       actions: [
         InkWell(
           onTap: _isShown == true
               ? () => _deleteState(context, () async {
-                updateRequestController.deleteRequest(widget.request.sId.toString());
-           allRequestController.listRequest.value = await AllRequestDayOffService().fetchRequest();
-          }, () {
-          })
+                    updateRequestController
+                        .deleteRequest(widget.request.sId.toString());
+                    allRequestController.listRequest.value =
+                        await AllRequestDayOffService().fetchRequest();
+                  }, () {})
               : null,
-          child: const Icon(Icons.delete,color: Colors.white,size: 30,),
+          child: const Icon(
+            Icons.delete,
+            color: Colors.white,
+            size: 30,
+          ),
         ),
       ],
     );

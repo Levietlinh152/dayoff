@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   const AppColors._();
 
-  static const Color kPrimaryColor = Color(0xFF6F35A5);
+  static const Color kPrimaryColor = Color(0xFFBDAAC5);
   static const Color mineShaft = Color(0xFF2B2B2B);
   static const Color doveGray = Color(0xFF646464);
   static const Color caribbeanGreen = Color(0xFF06C5AC);
@@ -26,7 +26,7 @@ class AppColors {
   static const border = Color(0xffD3D9DC);
   static const focusedText = Color(0xff4A52BF);
   static const placeholderText = Color(0xff455465);
-  static const kPrimaryLightColor = Color(0xFFF1E6FF);
+  static const kPrimaryLightColor = Color(0xFFEEE8EF);
   static LinearGradient getLinearGradient(MaterialColor color) {
     return LinearGradient(
       begin: Alignment.bottomLeft,

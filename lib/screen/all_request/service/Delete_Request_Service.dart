@@ -12,8 +12,7 @@ class DeleteRequest {
       dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
       final response = await dio
           .delete('http://66.42.56.32:3000/request/remove-request/$id');
-      if (response.statusCode == 200 || response.statusCode == 201) {
-      }
+      if (response.statusCode == 200 || response.statusCode == 201) {}
       // ignore: empty_catches
     } on Exception {}
   }

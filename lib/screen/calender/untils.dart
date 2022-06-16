@@ -21,9 +21,11 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: getHashCode,
 )..addAll(_kEventSource);
 
-final _kEventSource = { for (var item in List.generate(50, (index) => index)) DateTime.utc(kFirstDay.year, kFirstDay.month) : List.generate(
-        item % 4 + 3, (index) => Event('Name$index', '', '', '', '')) }
-  ..addAll({
+final _kEventSource = {
+  for (var item in List.generate(50, (index) => index))
+    DateTime.utc(kFirstDay.year, kFirstDay.month): List.generate(
+        item % 4 + 3, (index) => Event('Name$index', '', '', '', ''))
+}..addAll({
     kToday: [],
   });
 

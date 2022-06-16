@@ -14,13 +14,12 @@ class AddNewProject extends StatefulWidget {
 }
 
 class _AddNewProjectState extends State<AddNewProject> {
-  AddNewProjectController controller =
-      Get.put(AddNewProjectController());
+  AddNewProjectController controller = Get.put(AddNewProjectController());
   TextEditingController projectNameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController numberMemberController = TextEditingController();
 
-  String stateValue = "Choose your PM";
+  String pmValue = "Choose your PM";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,47 +48,50 @@ class _AddNewProjectState extends State<AddNewProject> {
                   color: Colors.grey,
                   weight: FontWeight.bold,
                 )),
-            Obx(()=> Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              width: Get.width * 0.8,
-              decoration: BoxDecoration(
-                color: AppColors.kPrimaryLightColor,
-                borderRadius: BorderRadius.circular(29),
-              ),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.manage_accounts_rounded,
-                    color: AppColors.kPrimaryColor,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: DropdownButton<AllUser>(
-                      hint:CustomText(text: stateValue),
-                      elevation: 16,
-                      style: const TextStyle(color: Colors.deepPurple),
-                      underline: Container(
-                        height: 2,
-                      ),
-                      onChanged: (AllUser? newValue) {
-                        setState(() {
-                          stateValue = newValue!.fullName!;
-                        });
-                      },
-                      items: controller.listMember.value.where((element) => element.roles=="PROJECT_MANAGER")
-                          .map<DropdownMenuItem<AllUser>>((AllUser value) {
-                        return DropdownMenuItem<AllUser>(
-                          value: value,
-                          child: Text(value.fullName!),
-                        );
-                      }).toList(),
+            Obx(() => Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  width: Get.width * 0.8,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey),
                     ),
                   ),
-                ],
-              ),
-            )),
-
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.manage_accounts_rounded,
+                        color: AppColors.kPrimaryColor,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: DropdownButton<AllUser>(
+                          hint: CustomText(text: pmValue),
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.deepPurple),
+                          underline: Container(
+                            height: 2,
+                          ),
+                          onChanged: (AllUser? newValue) {
+                            setState(() {
+                              pmValue = newValue!.fullName!;
+                            });
+                          },
+                          items: controller.listMember.value
+                              .where((element) =>
+                                  element.roles == "PROJECT_MANAGER")
+                              .map<DropdownMenuItem<AllUser>>((AllUser value) {
+                            return DropdownMenuItem<AllUser>(
+                              value: value,
+                              child: Text(value.fullName!),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
             const Padding(
                 padding: EdgeInsets.all(10),
                 child: CustomText(
@@ -125,10 +127,9 @@ class _AddNewProjectState extends State<AddNewProject> {
                                     width: Get.width / 2,
                                     child: Obx(
                                       () => ListView.builder(
-                                          itemCount: controller
-                                              .listUser.length,
-                                          itemBuilder:
-                                              (BuildContext context, int index) {
+                                          itemCount: controller.listUser.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
                                             return Card(
                                               margin: const EdgeInsets.all(10),
                                               child: ListTile(
@@ -152,7 +153,8 @@ class _AddNewProjectState extends State<AddNewProject> {
                                                       controller
                                                           .addMember(index);
                                                     },
-                                                    child: const Icon(Icons.add)),
+                                                    child:
+                                                        const Icon(Icons.add)),
                                               ),
                                             );
                                           }),
@@ -162,8 +164,7 @@ class _AddNewProjectState extends State<AddNewProject> {
                                   decoration: BoxDecoration(),
                                   child: Obx(
                                     () => ListView.builder(
-                                        itemCount: controller
-                                            .listMember.length,
+                                        itemCount: controller.listMember.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           return Card(
@@ -215,8 +216,12 @@ class _AddNewProjectState extends State<AddNewProject> {
                 press: () {
                   CreateProjectModel project = CreateProjectModel(
                     projectName: projectNameController.text,
-                    member:  controller.listMember.map((element) => element.sId!).toList(),
-                    projectManager: controller.listMember.where((p0) => p0.fullName==stateValue).first,
+                    member: controller.listMember
+                        .map((element) => element.sId!)
+                        .toList(),
+                    projectManager: controller.listMember
+                        .where((p0) => p0.fullName == pmValue)
+                        .first,
                   );
                   controller.addNewProject(project);
                   Get.back();

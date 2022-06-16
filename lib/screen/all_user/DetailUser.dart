@@ -1,7 +1,7 @@
 import 'package:day_offf_app/screen/all_user/controller/AllUserController.dart';
+import 'package:day_offf_app/screen/all_user/controller/DeleteUserController.dart';
 import 'package:day_offf_app/screen/all_user/controller/EditController.dart';
 import 'package:day_offf_app/screen/all_user/model/Usemodel.dart';
-import 'package:day_offf_app/screen/all_user/service/AllService.dart';
 import 'package:day_offf_app/widget/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -21,7 +21,7 @@ class DetailUser extends StatefulWidget {
 }
 
 class _DetailUserState extends State<DetailUser> {
-  AllUserController allUserController= Get.find();
+  AllUserController allUserController = Get.find();
   EditUserController editUserController = Get.put(EditUserController());
   TextEditingController dateController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
@@ -33,8 +33,10 @@ class _DetailUserState extends State<DetailUser> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
+  DeleteUserController controller = Get.put(DeleteUserController());
+
   late String rolesValue;
-  late String levelValue="INTERN";
+  late String levelValue = "INTERN";
 
   bool _isShown = true;
   void _deleteState(
@@ -68,12 +70,14 @@ class _DetailUserState extends State<DetailUser> {
           );
         });
   }
+
   @override
   void initState() {
-    rolesValue= widget.user.roles.toString();
-    levelValue= widget.user.level.toString();
+    rolesValue = widget.user.roles.toString();
+    levelValue = widget.user.level.toString();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     editUserController.updateUserModel.value = widget.user;
@@ -81,46 +85,42 @@ class _DetailUserState extends State<DetailUser> {
         appBar: _appbar(),
         body: Obx(
           () => Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 30, 20,0),
             child: ListView(
               children: [
-                Stack(children: [
-                  Container(
-                    height: Get.height * 0.3,
-                    width: Get.width,
-                    decoration: const BoxDecoration(
+                Stack(children:  [
+                  const Center(
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(AppUrl.avatar_url),
+                        radius: 90,
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    top: Get.height * 0.15 - 90,
-                    left: Get.width / 2 - 80,
-                    child: const CircleAvatar(
-                      backgroundImage: NetworkImage(AppUrl.avatar_url),
-                      radius: 90,
-                    ),
-                  ),
-                  Positioned(
-                      bottom: Get.height * 0.15 - 90,
-                      right: Get.width / 2 - 110,
-                      child: RawMaterialButton(
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(200, 0, 0, 10),
+                    child: RawMaterialButton(
                         onPressed: () {},
                         elevation: 2.0,
-                        fillColor: Colors.white,
-                        child: Icon(
+                      fillColor: Colors.white,
+                      child: Icon(
                           Icons.edit,
                           color: Colors.lightBlue[900],
                           size: 30,
+
                         ),
-                        padding: const EdgeInsets.all(15.0),
-                        shape: const CircleBorder(),
-                      )),
+                      padding: const EdgeInsets.all(8.0),
+                      shape: const CircleBorder(),
+                    ),
+                  )
                 ]),
-                RoundedInputField(
-                  textfielController: fullnameController
-                    ..text = editUserController.updateUserModel.value.fullName
-                        .toString(),
-                  hintText: "fullName",
-                  onChanged: (value) {},
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: RoundedInputField(
+                    textfielController: fullnameController
+                      ..text = editUserController.updateUserModel.value.fullName
+                          .toString(),
+                    hintText: "fullName",
+                    onChanged: (value) {},
+                  ),
                 ),
                 RoundedInputField(
                     textfielController: nicknameController
@@ -131,8 +131,8 @@ class _DetailUserState extends State<DetailUser> {
                     icon: Icons.drive_file_rename_outline),
                 RoundedInputField(
                   textfielController: emailController
-                    ..text =
-                        editUserController.updateUserModel.value.email.toString(),
+                    ..text = editUserController.updateUserModel.value.email
+                        .toString(),
                   hintText: "email",
                   icon: Icons.email,
                   onChanged: (value) {},
@@ -150,9 +150,10 @@ class _DetailUserState extends State<DetailUser> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   width: Get.width * 0.8,
-                  decoration: BoxDecoration(
-                    color: AppColors.kPrimaryLightColor,
-                    borderRadius: BorderRadius.circular(29),
+                  decoration: const BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1.0, color: Colors.grey),
+                      ),
                   ),
                   child: Row(
                     children: [
@@ -189,11 +190,12 @@ class _DetailUserState extends State<DetailUser> {
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   width: Get.width * 0.8,
-                  decoration: BoxDecoration(
-                    color: AppColors.kPrimaryLightColor,
-                    borderRadius: BorderRadius.circular(29),
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey),
+                    ),
                   ),
                   child: Row(
                     children: [
@@ -215,8 +217,13 @@ class _DetailUserState extends State<DetailUser> {
                               levelValue = newValue!;
                             });
                           },
-                          items: <String>['INTERN', 'FRESHER', 'JUNIOR','MIDDLE','SENIOR']
-                              .map<DropdownMenuItem<String>>((String value) {
+                          items: <String>[
+                            'INTERN',
+                            'FRESHER',
+                            'JUNIOR',
+                            'MIDDLE',
+                            'SENIOR'
+                          ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -227,10 +234,10 @@ class _DetailUserState extends State<DetailUser> {
                     ],
                   ),
                 ),
-
                 RoundedInputField(
                   textfielController: dateController
-                    ..text = editUserController.updateUserModel.value.dateOfBirth
+                    ..text = editUserController
+                        .updateUserModel.value.dateOfBirth
                         .toString()
                         .substring(0, 10),
                   onTap: () {
@@ -250,8 +257,8 @@ class _DetailUserState extends State<DetailUser> {
                   padding: const EdgeInsets.all(20),
                   child: RoundedButton(
                       text: 'SUBMIT',
-                      press: ()  {
-                        AllUser allUser =  AllUser(
+                      press: () {
+                        AllUser allUser = AllUser(
                             fullName: fullnameController.text,
                             nickName: nicknameController.text,
                             email: emailController.text,
@@ -260,9 +267,8 @@ class _DetailUserState extends State<DetailUser> {
                             level: levelValue,
                             dateOfBirth: dateController.text);
 
-                           editUserController.upDateUser(
+                        editUserController.upDateUser(
                             widget.user.sId.toString(), allUser);
-
                       }),
                 )
               ],
@@ -270,25 +276,24 @@ class _DetailUserState extends State<DetailUser> {
           ),
         ));
   }
-  _appbar(){
+
+  _appbar() {
     return AppBar(
-      title: const CustomText(text:""),
+      title: const CustomText(text: ""),
       actions: [
         InkWell(
           onTap: _isShown == true
               ? () => _deleteState(context, () async {
-            AllService().deleteUser(widget.user.sId!);
-            allUserController.futureStudent.value = await AllService().fetchPost();
-            Get.back();
-          }, () {
-          })
+                   controller.deleteUser(widget.user.sId!);
+                  }, () {})
               : null,
-          child: const Icon(Icons.delete,color: Colors.white,size: 30,),
+          child: const Icon(
+            Icons.delete,
+            color: Colors.white,
+            size: 30,
+          ),
         ),
-
       ],
     );
-
   }
-
 }

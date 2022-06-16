@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 import 'AllUserController.dart';
 
-class EditUserController extends GetxController{
+class EditUserController extends GetxController {
   Rx<AllUser> updateUserModel = AllUser().obs;
-  AllUserController allUserController= Get.find();
+  AllUserController allUserController = Get.find();
 
-  Future<void> upDateUser(String id, AllUser allUser) async{
-    EditUserService editUserEdit =  EditUserService();
-   await editUserEdit.updateEmployee(id, allUser);
-   Get.back();
-   allUserController.onInit();
+  Future<void> upDateUser(String id, AllUser allUser) async {
+    EditUserService editUserEdit = EditUserService();
+    await editUserEdit.updateEmployee(id, allUser);
+    allUserController.onInit();
+    Get.back();
   }
 }

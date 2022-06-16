@@ -30,5 +30,4 @@ class AllRequestInMonth {
       throw Exception('Failed to load post');
     }
   }
-
 }

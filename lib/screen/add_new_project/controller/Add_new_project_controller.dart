@@ -6,7 +6,7 @@ import '../../all_user/model/Usemodel.dart';
 import '../../all_user/service/AllService.dart';
 
 class AddNewProjectController extends GetxController {
-  ProjectController projectController= Get.find();
+  ProjectController projectController = Get.find();
   Future<void> addNewProject(CreateProjectModel createProjectModel) async {
     AddNewProjectService addNewProjectService = AddNewProjectService();
     await addNewProjectService.addNewProject(createProjectModel);
@@ -22,6 +22,7 @@ class AddNewProjectController extends GetxController {
     listUser.value = await AllService().fetchPost();
     listStringId.value = listMember.map((element) => element.sId!).toList();
   }
+
   void addMember(int index) {
     for (int i = 0; i <= listUser.length; i++) {
       if (i == index) {
@@ -43,8 +44,8 @@ class AddNewProjectController extends GetxController {
 
   List<String> listId() {
     for (int i = 0; i < listUser.length; i++) {
-        listStringId.add(listUser[i].sId!);
-      }
+      listStringId.add(listUser[i].sId!);
+    }
     return listStringId;
   }
 }

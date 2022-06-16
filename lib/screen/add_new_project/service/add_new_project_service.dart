@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class AddNewProjectService {
   var dio = Dio();
-LoginController controller = Get.find();
+  LoginController controller = Get.find();
   Future<void> addNewProject(CreateProjectModel createProjectModel) async {
     dio.options.headers["Authorization"] = "Bearer ${controller.user_token}";
     final response = await dio.post(

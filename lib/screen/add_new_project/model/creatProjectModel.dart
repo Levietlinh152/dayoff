@@ -9,12 +9,14 @@ class CreateProjectModel {
 
   CreateProjectModel.fromJson(Map<String, dynamic> json) {
     projectName = json['projectName'];
-    projectManager = json['projectManager'] != null ?  AllUser.fromJson(json['projectManager']) : null;
+    projectManager = json['projectManager'] != null
+        ? AllUser.fromJson(json['projectManager'])
+        : null;
     member = json['member'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['projectName'] = this.projectName;
     if (this.projectManager != null) {
       data['projectManager'] = this.projectManager!.toJson();
@@ -23,4 +25,3 @@ class CreateProjectModel {
     return data;
   }
 }
-

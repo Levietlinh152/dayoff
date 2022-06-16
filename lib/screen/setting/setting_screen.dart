@@ -22,13 +22,11 @@ class SettingScreen extends StatelessWidget {
         child: Column(
           children: [
             TextFuntion(
-                ontap: () => {
-                  Get.to(EmployeeScreen())
-                },
-                lable: "Employee Profile"),
+                ontap: () => {Get.to(EmployeeScreen())},
+                lable: "My Profile"),
             TextFuntion(
                 ontap: () {
-                  Get.to(const ChangePasswordScreen());
+                  Get.to(ChangePasswordScreen());
                 },
                 lable: "Change Password"),
             TextFuntion(ontap: () {}, lable: "Share the app"),

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class AppThemes {
   AppThemes._();
 
-  static const Color primary = Color(0xFFE36386);
+  static const Color primary = Color(0xFFDCAE5F);
   static const Color whiteLilac = Color.fromRGBO(248, 250, 252, 1);
   static const Color blackPearl = Color.fromRGBO(30, 31, 43, 1);
-  static const Color brinkPink = Color.fromRGBO(255, 97, 136, 1);
+  static const Color brinkPink = Color.fromRGBO(255, 218, 97, 1.0);
   static const Color juneBud = Color.fromRGBO(186, 215, 97, 1);
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color nevada = Color.fromRGBO(105, 109, 119, 1);

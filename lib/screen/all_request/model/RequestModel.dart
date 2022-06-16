@@ -22,7 +22,7 @@ class AllRequestModel {
       this.createdDate,
       this.isMultipleDay,
       this.isMorning,
-        this.isAfternoon,
+      this.isAfternoon,
       this.iV});
 
   AllRequestModel.fromJson(Map<String, dynamic> json) {
@@ -35,7 +35,7 @@ class AllRequestModel {
     createdDate = json['createdDate'];
     isMultipleDay = json['isMultipleDay'];
     isMorning = json['isMorning'];
-    isAfternoon=json['isAfternoon'];
+    isAfternoon = json['isAfternoon'];
     iV = json['__v'];
   }
 
@@ -52,7 +52,7 @@ class AllRequestModel {
     data['createdDate'] = createdDate;
     data['isMultipleDay'] = isMultipleDay;
     data['isMorning'] = isMorning;
-    data['isAfternoon']=isAfternoon;
+    data['isAfternoon'] = isAfternoon;
     data['__v'] = iV;
     return data;
   }

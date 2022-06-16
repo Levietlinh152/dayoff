@@ -55,4 +55,3 @@ class Project {
     return data;
   }
 }
-

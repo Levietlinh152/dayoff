@@ -10,43 +10,37 @@ class UpdateRequestController extends GetxController {
   AllRequestController allRequestController = Get.find();
   var tabTextIconIndexSelected = 0;
 
-
   Future<void> updateRequest(String state, String id) async {
-    AllRequestModel allRequestModel = AllRequestModel(
-        state: state
-    );
+    AllRequestModel allRequestModel = AllRequestModel(state: state);
     UpdateRequestService updateRequestService = UpdateRequestService();
     updateRequestService.updateRequest(id, allRequestModel);
     allRequestController.onInit();
-    Get.back();
   }
 
-  Future<void> deleteRequest( String id) async {
+  Future<void> deleteRequest(String id) async {
     DeleteRequest delete = DeleteRequest();
     delete.deleteRequest(id);
     allRequestController.onInit();
-    allRequestController.listRequest.value = await AllRequestDayOffService().fetchRequest();
+    allRequestController.listRequest.value =
+        await AllRequestDayOffService().fetchRequest();
     Get.back();
-
   }
 
   int stateIndex(String state) {
     if (state == "REQUESTED") {
       return 0;
-    }
-    else if (state == "APPROVED") {
+    } else if (state == "APPROVED") {
       return 1;
     }
     return 2;
   }
-  String state(bool isMorning, bool isMulti){
-    if(isMorning==true){
+
+  String state(bool isMorning, bool isMulti) {
+    if (isMorning == true) {
       return "Morning";
-    }
-    else if( isMulti == true){
+    } else if (isMulti == true) {
       return "Multi day";
     }
     return "Afternoon";
   }
 }
-
